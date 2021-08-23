@@ -1,0 +1,5 @@
+
+const Producto{
+   name: "",
+   brand: "",
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/app.dev.js" defer></script>
+    <title>Editor de texto</title>
+  </head>
+  <body>
+    <div class="container">
+      <textarea
+        onkeyup="update()"
+        class="text"
+        id="texto"
+        placeholder="Escribe tu texto aquí.."
+      ></textarea>
+      <iframe
+        title="view"
+        id="view"
+        srcdoc="<h1> IFrame </h1>"
+        frameborder="0"
+      ></iframe>
+    </div>
+  </body>
+</html>

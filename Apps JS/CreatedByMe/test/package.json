@@ -1,0 +1,20 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "pruebas unitarias",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "author": "Guillermo Lopez",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.0.3"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1"
+  }
+}

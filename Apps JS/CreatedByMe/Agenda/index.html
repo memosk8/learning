@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Agenda ᗒ Calendario </title>
+   <link rel="stylesheet" href="./css/style.css">
+   <!-- <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.css"> -->
+   <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+      crossorigin="anonymous">
+   <script src="./bootstrap-5.0.2-dist/js/bootstrap.js"></script>
+</head>
+
+<body >
+
+   <nav class="navbar navbar-light bg-white ">
+
+      <div class="nav-brand text-uppercase">Agenda</div>
+      <div class="navbar-text nav-tabs" >ᗒ <span id="in-section"> Section </span> </div>
+      <div class="navbar-text nav-tabs" >ᗒ <span id="in-section"> Section </span> </div>
+
+      <em>
+         <div class="nav-item bg-white" id="clock">_____________________________</div>
+      </em>
+
+   </nav>
+
+   <br>
+
+   <div id="calendar-grid" class="container-fluid bg-dark ">
+
+      <div class="flex-lg-column p-md-1 text-center">
+         <h3 class="d-inline-block text-light mx-5 row" id="monthLabel">mes</h3>
+         <h3 class="d-inline-block text-light "> | </h3>
+         <h3 class="d-inline-block text-light mx-5 row" id="yearLabel">año</h3>
+      </div>
+
+      <!-- <table class="table-dark text-center container-fluid shadow-lg">
+            <thead class="text-success">
+               <th class="">Lunes</th>
+               <th class="">Martes</th>
+               <th class="">Miercoles</th>
+               <th class="">Jueves</th>
+               <th class="">Viernes</th>
+               <th class="">Sábado</th>
+               <th class="">Domingo</th>
+            </thead>
+         <tbody id="table-body">
+         </tbody>
+      </table> -->
+
+      <main class="container text-white calendar-container" id="calendar-container">
+         
+         <div class="row" id="week-days-header">
+            <div class="col border">lunes</div>
+            <div class="col border">martes</div>
+            <div class="col border">miercoles</div>
+            <div class="col border">jueves</div>
+            <div class="col border">viernes</div>
+            <div class="col border">sabado</div>
+            <div class="col border">domingo</div>
+         </div>
+
+
+      </main>
+
+      <br class="col-12 bg-transparent">
+
+   </div>
+
+   <br >
+
+   <div class="container-fluid row text-center list-group-numbered">
+
+      <div class="col-sm-3 d-inline-flex list-group" id="monthSelect">
+         <label for="month-select" class="text-start container">Mes</label>
+         <select name="month" id="month-select" class="btn-sm btn-dark list-group-item">
+            <option value="0">Enero</option>
+            <option value="1">Febrero</option>
+            <option value="2">Marzo</option>
+            <option value="3">Abril</option>
+            <option value="4">Mayo</option>
+            <option value="5">Junio</option>
+            <option value="6">Julio</option>
+            <option value="7">Agosto</option>
+            <option value="8">Septiembre</option>
+            <option value="9">Octubre</option>
+            <option value="10">Noviembre</option>
+            <option value="11">Diciembre</option>
+         </select>
+      </div>
+   
+      <div class="col-sm-3 d-inline-flex list-group">
+         <label for="year-select" class="text-start container">Año</label>
+         <select name="year" id="year-select" class="btn-sm btn-dark list-group-item" onchange="changeYear()">
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+         </select>
+      </div>
+
+   </div>
+
+   <br>
+
+   <script src="./js/src/calendar.js"></script>
+</body>
+</html>  

@@ -1,0 +1,22 @@
+
+.header{
+  margin: 1rem;
+  text-align: center;
+  font-family: 'Gloria Hallelujah';
+  background-color: teal;
+  color: White;
+  padding: 1rem;
+  border-radius: 3rem 1rem;
+  margin-bottom: 0;
+}
+
+.reloj{
+  margin-top: 0.5cm;
+  font-family: 'Gloria Hallelujah';
+  border-radius: 3rem 1rem;
+  background-color: white;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 28px;  
+}

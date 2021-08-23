@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+}
+
+h2 {
+  text-align: center;
+}
+
+.salida {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  width: 30%;
+  height: 8rem;
+  margin: 1rem 35%;
+  border: 1px solid #000;
+
+  font-size: 1.7rem;
+  letter-spacing: 0.2rem;
+  text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000,
+    1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+
+  color: #fff;
+}
+
+.color-div {
+  text-align: center;
+}
+
+li {
+  display: inline-block;
+  text-align: center;
+  list-style: none;
+  font-size: 1.3rem;
+  color: snow;
+  text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000,
+    1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+
+  margin: 5px;
+  padding: 4px;
+}

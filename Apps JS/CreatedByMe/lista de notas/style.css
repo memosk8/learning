@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+}
+
+.main-header {
+  background-color: darkcyan;
+  margin: 0.5%;
+  padding: 1rem;
+  display: inline-block;
+  width: 100%;
+  align-content: center;
+  text-align: center;
+  color: aliceblue;
+}

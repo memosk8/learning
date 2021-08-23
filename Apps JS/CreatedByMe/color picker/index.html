@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/normalize.css" />
+
+    <link
+      rel="shortcut icon"
+      href="./assets/javascript.ico"
+      type="image/x-icon"
+    />
+    <script src="./js/src/setColor.js"></script>
+    <script src="./js/src/saveColor.js"></script>
+  </head>
+  <body class="normalize">
+    <h2>Paleta de colores</h2>
+    <div class="salida" id="salida"></div>
+
+    <div class="color-div">
+      <input type="color" id="color" />
+      <button onclick="saveColorList(color.value)">Guardar Color</button>
+    </div>
+
+    <div>
+      <h2 style="text-align: center">
+        Colores Guardados <span id="count"></span>
+      </h2>
+      <ul id="list"></ul>
+    </div>
+
+    <script src="./js/src/definitions.js"></script>
+    <script src="./js/src/colorScript.js"></script>
+  </body>
+</html>
