@@ -7,7 +7,7 @@
 
 Where does npm install the packages?
 When you install a package using npm you can perform 2 types of installation:
-
+martes agosto 24, 14:52:18
 a local install
 a global install
 By default, when you type an npm install command, like:

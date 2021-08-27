@@ -1,0 +1,16 @@
+{
+  "name": "johnny-five-hdw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "reset": "firmata-party uno --debug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firmata-party": "^2.0.1",
+    "johnny-five": "^2.1.0"
+  }
+}
