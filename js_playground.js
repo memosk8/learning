@@ -173,7 +173,7 @@ Example: addWithSurcharge(5, 15) should return 23.
 */
 
 function addWithSurcharge(n1, n2) {
-  let nums = [n1, n2].map(n => n <= 10 ? n += 1 : n += 2 )
+  let nums = [n1, n2].map(n => n <= 10 ? n += 1 : n += 2)
   return nums[0] + nums[1];
 }
 
@@ -189,8 +189,8 @@ console.log(addWithSurcharge(5, 15))
 */
 
 function addWithSurcharge2(n1, n2) {
-  let nums = [n1, n2], newnums = [];
-  for (let n of nums) {
+  let newnums = [];
+  for (let n of [n1, n2]) {
     if (n <= 10)
       n += 1;
     else if (n > 10 && n <= 20)
@@ -199,9 +199,44 @@ function addWithSurcharge2(n1, n2) {
       n += 3;
     newnums.push(n)
   }
-  console.log(n1, n2)
-  delete nums;
   return newnums[0] + newnums[1];
 }
 
 console.log(addWithSurcharge2(10, 30))
+
+/**
+  Write a function concatUp that concatenate two arrays. 
+  The longer array should be appended to the shorter array. 
+  If both arrays are equally long, the second array should be appended to the first array.
+
+  Example: 
+    concatUp([1, 2], [3]) should return [3, 1, 2] 
+    concatUp([5, 7], [6, 8]) should return [5, 7, 6, 8].
+*/
+
+function concatUp(a1, a2) {
+  if (a1.length < a2.length)
+    return a1.concat(a2)
+  else if (a1.length == a2.length)
+    return a1.concat(a2)
+  else
+    return a2.concat(a1);
+}
+
+console.log(concatUp([1, 2, 5], [0, 1]))
+console.log(concatUp([5, 7], [6, 8]))
+
+/**
+  Write a function halve that copies the first half of an array. 
+  With an odd number of array elements, the middle element should belong to the first half.
+
+  Example: halve([1, 2, 3, 4]) should return [1, 2].
+*/
+
+function halve(arr) {
+  let len = arr.length
+  return len % 2 == 0 ? arr.slice(0, len / 2) : arr.slice(0, (len / 2) + 1);
+}
+
+console.log(halve([1, 2, 3, 4, 2]))
+console.log(halve([1, 2, 3, 4]))
