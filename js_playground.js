@@ -225,6 +225,7 @@ function concatUp(a1, a2) {
 
 console.log(concatUp([1, 2, 5], [0, 1]))
 console.log(concatUp([5, 7], [6, 8]))
+console.log(concatUp([89, 8, "holla"], ['kilo']))
 
 /**
   Write a function halve that copies the first half of an array. 
@@ -240,3 +241,26 @@ function halve(arr) {
 
 console.log(halve([1, 2, 3, 4, 2]))
 console.log(halve([1, 2, 3, 4]))
+
+/**
+  Write a function flat that flattens a two-dimensional array with 3 entries.
+
+  Example: flat(loshu) should return [4, 9, 2, 3, 5, 7, 8, 1, 6]. 
+  Thereby loshu is the magic square from the example above.
+*/
+
+const loshu = [
+  [4, 9, 2],
+  [3, 5, 7],
+  [8, 1, 6]
+];
+
+function flat(mtrx) {
+  let flatMtrx = [];
+  mtrx.forEach((row) => flatMtrx.push(...row))
+  return flatMtrx;
+}
+
+console.log(flat(loshu));
+
+
