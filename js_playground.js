@@ -216,9 +216,9 @@ console.log(addWithSurcharge2(10, 30))
 
 function concatUp(a1, a2) {
   if (a1.length < a2.length)
-    return a1.concat(a2)
+    return a1.concat(a2);
   else if (a1.length == a2.length)
-    return a1.concat(a2)
+    return a1.concat(a2);
   else
     return a2.concat(a1);
 }
@@ -234,7 +234,7 @@ console.log(concatUp([5, 7], [6, 8]))
 */
 
 function halve(arr) {
-  let len = arr.length
+  let len = arr.length;
   return len % 2 == 0 ? arr.slice(0, len / 2) : arr.slice(0, (len / 2) + 1);
 }
 
