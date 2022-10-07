@@ -4,10 +4,10 @@ let arr = [2, 3, 45, 7, 34, 8, 4, 78];
 
 for (let i = 0; i < arr.length; i++) {
    const num = arr[i];
-   console.log(num, i);
+   console.log(num);
 }
 
-// for each loops through all the elements and requires a callback function
+// forEach loops through all the elements and requires a callback function
 // to call for each one of the elements 
 
 arr.forEach(item => {
