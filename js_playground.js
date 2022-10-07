@@ -76,7 +76,6 @@ console.log(nor(false, false))
 
 function xor(a, b) {
   if ((typeof a != "boolean") && (typeof b != "boolean")) {
-    console.log('not boolean bitch')
     return undefined;
   }
   else {
@@ -94,6 +93,7 @@ console.log(xor(true, true))
   Write a function equals that checks two values for strict equality.
   Example: equals(1, 1) should return true and equals(1, 2) should return false.
 */
+
 function equals(n1, n2) {
   return n1 === n2 ? true : false;
 }
@@ -106,6 +106,7 @@ console.log(equals(23, '23'))
 
   Example: equals(1, 1, 1) should return true and equals(1, 2, 1) should return false.
  */
+
 function equals3(n1, n2, n3) {
   return (n1 === n2) && (n1 === n3) ? true : false;
 }
@@ -242,6 +243,14 @@ function halve(arr) {
 console.log(halve([1, 2, 3, 4, 2]))
 console.log(halve([1, 2, 3, 4]))
 
+const loshu = [
+  [4, 9, 2],
+  [3, 5, 7],
+  [8, 1, 6]
+];
+
+console.log("Loshu #: " + loshu)
+
 /**
   Write a function flat that flattens a two-dimensional array with 3 entries.
 
@@ -249,18 +258,117 @@ console.log(halve([1, 2, 3, 4]))
   Thereby loshu is the magic square from the example above.
 */
 
-const loshu = [
-  [4, 9, 2],
-  [3, 5, 7],
-  [8, 1, 6]
-];
-
 function flat(mtrx) {
-  let flatMtrx = [];
+  const flatMtrx = [];
   mtrx.forEach((row) => flatMtrx.push(...row))
   return flatMtrx;
 }
 
 console.log(flat(loshu));
 
+/**
+  Write a function median that takes an array of ascending numbers 
+  and returns the median of that numbers.
 
+  Example: median([1, 2, 10]) should return 2 and median([1, 2, 10, 100]) should return 6.
+  
+  The median of a sorted series of numbers is the value in the middle. 
+  If the number of values is even, the median is the mean of the two middle numbers.
+*/
+
+function median(nums) {
+  if (nums.length % 2 == 0)
+    return (nums[nums.length / 2] + nums[(nums.length / 2 - 1)]) / 2;
+  else
+    return nums[Math.round(nums.length / 2) - 1]
+}
+
+console.log(median([12, 3, 56, 90, 100, 2, 23]))
+console.log(median([12, 3, 56, 90, 100, 2]))
+
+
+/**
+  Write a function hello having one parameter and returning 'Hello <parameter>!'. 
+  If hello is called without an argument, 'Hello world!' should be returned.
+
+  Example: hello('Nala') should return 'Hello Nala!'.
+*/
+
+function hello(a) {
+  if (a === undefined)
+    return "Hello world!"
+  else
+    return `Hello ${a}!`
+}
+
+console.log(hello("carlos"))
+console.log(hello())
+
+/**
+  Write a function cutComment that takes one line of JavaScript 
+  and returns a possible line comment trimmed. 
+  If the line contains no line comment, null should be returned. 
+  For simplicity, we assume that the code does not contain the comment characters within a string.
+
+  Example: cutCommt('let foo; // bar') should return 'bar'.
+*/
+
+function cutComment(codeline) {
+  const regex = /\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm
+  let match = codeline.match(regex);
+  return match ? match[0].replace('//', '').trim() : null;
+}
+
+console.log(cutComment("var login = true; // this"))
+
+/**
+  Write a function addTo that accepts a number as a parameter 
+  and adds all natural numbers smaller or equal than the parameter.
+  The result is to be returned.
+
+  Example: addTo(3) should return 1+2+3 = 6.
+ */
+
+function addTo(n) {
+  let sum = 0;
+  for (i = 1; i <= n; i++)
+    sum += i;
+  return sum;
+}
+
+console.log(addTo(3))
+
+/* Factorial */
+
+function factorial(n) {
+  var total = 1;
+  for (i = 1; i <= n; i++) {
+    total = total * i;
+  }
+  return total;
+}
+
+/*
+  Mean of an array of numbers
+*/
+
+function mean(nums) {
+  let sum = 0;
+  for (i = 0; i < nums.length; i++) {
+    sum = sum + nums[i];
+  }
+  return sum / nums.length;
+}
+
+console.log(mean([23, 2]))
+console.log(mean([23, 4, 104, 77, 8, 9]))
+
+
+function spaces(n) {
+  let spaces = "";
+  while (spaces.length < n)
+    spaces = spaces + ' ';
+  return spaces;
+}
+
+console.log(spaces(3))
