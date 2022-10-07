@@ -405,11 +405,11 @@ function lcm(a, b) {
 
 console.log(lcm(4, 6))
 
-function gcm(a, b) {
+function gcd(a, b) {
   return (a * b) / lcm(a, b)
 }
 
-console.log(gcm(6, 15))
+console.log(gcd(6, 15))
 
 /** Prime number */
 
@@ -449,8 +449,32 @@ function sum(a) {
 
 console.log(sum([[1, 2], [2, 1], [4]]))
 
-function max(){
+function max() {
   return Math.max(...arguments)
 }
 
-console.log(max(1,40,7,23))
+console.log(max(1, 34, 2, 23, 100, 04))
+
+/* 
+  function parseFirstInt that takes a string and returns the first integer present in the string. 
+  If the string does not contain an integer, you should get NaN.
+
+  Example: parseFirstInt('No. 10') should return 10 and parseFirstInt('Babylon') should return NaN.
+ */
+
+function parseFirstInt(str) {
+  let splitstr = str.split(' ')
+  splitstr.map((e) => e.trim())
+  var num = '';
+  console.log(splitstr.length)
+  for (i = 0; i < splitstr.length; i++) {
+    if (splitstr[i] > -Infinity && splitstr[i] <= '9') {
+      num = splitstr[i]
+      break;
+    }
+  }
+  return parseInt(num)
+}
+console.log(parseFirstInt('Babylon'))
+console.log(parseFirstInt('No. 10'))
+console.log(parseFirstInt('fr dc4dv fr demikm33 r4455 56'))
