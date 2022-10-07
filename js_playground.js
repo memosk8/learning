@@ -348,6 +348,8 @@ function factorial(n) {
   return total;
 }
 
+console.log(factorial(3))
+
 /*
   Mean of an array of numbers
 */
@@ -372,3 +374,83 @@ function spaces(n) {
 }
 
 console.log(spaces(3))
+
+/* 
+  Write a function lcm that takes two natural numbers 
+  and calculates their least common multiple (lcm). 
+  The lcm of two natural numbers a und b is the smallest natural number that is divisible by a and b.
+
+  Example: lcm(4, 6) should return 12.
+
+  To calculate the lcm of a and b, take 1 and test whether it is divisible by a and b. 
+  If so, 1 is the lcm. If not, take 2 and test again. And so forth.
+ */
+
+function lcm(a, b) {
+
+  let theLCM = 0;
+  let remainderA;
+  let remainderB;
+
+  do {
+
+    theLCM++;
+    remainderA = theLCM % a;
+    remainderB = theLCM % b;
+
+  } while (remainderA !== 0 || remainderB !== 0)
+
+  return theLCM;
+}
+
+console.log(lcm(4, 6))
+
+function gcm(a, b) {
+  return (a * b) / lcm(a, b)
+}
+
+console.log(gcm(6, 15))
+
+/** Prime number */
+
+function isPrime(n) {
+  if (n === 1) {
+    return false;
+  }
+  else if (n === 2) {
+    return true;
+  } else {
+    for (var x = 2; x < n; x++) {
+      if (n % x === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+
+console.log(isPrime(7))
+
+/**
+  Write a function sum that calculates 
+  the sum of all elements of a two-dimensional array.
+  Example: sum([[1, 2], [3]]) should return 6.
+ */
+
+function sum(a) {
+  let sum = 0;
+  for (let i = 0; i < a.length; i++) {
+    for (let j = 0; j < a[i].length; j++) {
+      sum = sum + a[i][j]
+    }
+  }
+  return sum;
+}
+
+console.log(sum([[1, 2], [2, 1], [4]]))
+
+function max(){
+  return Math.max(...arguments)
+}
+
+console.log(max(1,40,7,23))
