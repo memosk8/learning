@@ -463,18 +463,21 @@ console.log(max(1, 34, 2, 23, 100, 04))
  */
 
 function parseFirstInt(str) {
-  let splitstr = str.split(' ')
-  splitstr.map((e) => e.trim())
+  let splitstr = str.trim().split(' ')
   var num = '';
-  console.log(splitstr.length)
+  console.log(splitstr)
   for (i = 0; i < splitstr.length; i++) {
+    if (splitstr[i].length === 0)
+      splitstr.splice(i, 1)
     if (splitstr[i] > -Infinity && splitstr[i] <= '9') {
       num = splitstr[i]
       break;
     }
   }
+  console.log(splitstr)
   return parseInt(num)
 }
-console.log(parseFirstInt('Babylon'))
-console.log(parseFirstInt('No. 10'))
-console.log(parseFirstInt('fr dc4dv fr demikm33 r4455 56'))
+
+// console.log(parseFirstInt('Babylon'))
+// console.log(parseFirstInt('No. 10'))
+console.log(parseFirstInt(' fr dc4dv  fr 2 demikm33 '))
