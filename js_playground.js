@@ -560,13 +560,44 @@ console.log(arabic('CDLXXXIII'))
   Their sum is 78. sumMultiples(20) should return 78.
  */
 
-function sumMultiples(n){
+function sumMultiples(n) {
+  const nums = new Set();
   let sum = 0;
-  if(n == 3) return n;
-  if(n == 5) return n;
-  if(n % 3 == 0) return n / 3
-  else if(n % 5 == 0) return n / 5
+
+  if (n <= 2) return 0;
+
+  for (let i = 1; i < n; i++) {
+    if (i * 3 < n) {
+      nums.add(i * 3)
+      console.log(i * 3)
+    }
+    if (i * 5 < n) {
+      nums.add(i * 5)
+      console.log(i * 5)
+    }
+  }
+
+  nums.forEach(n => sum = sum + n)
+
   return sum;
 }
 
-console.log(sumMultiples(15))
+console.log(sumMultiples(20))
+
+/* 
+  function digitsum that calculates the digit sum of an integer. 
+  The digit sum of an integer is the sum of all its digits.
+
+  Example: digitsum(192) should return 12.
+ */
+
+function digitSum(num) {
+  let sum = 0;
+  const nums = num.toString().split('')
+  for (let i = 0; i < nums.length; i++) {
+    sum = sum + parseInt(nums[i])
+  }
+  return sum
+}
+
+console.log(digitSum(123456789))
