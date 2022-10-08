@@ -551,3 +551,22 @@ const romanHash = {
 };
 
 console.log(arabic('CDLXXXIII'))
+
+/**
+  Write a function sumMultiples taking a natural number n 
+  and returning the sum of all multiples of 3 and of 5 that are truly less than n.
+
+  Example: All multiples of 3 and 5 less than 20 are 3, 5, 6, 9, 10, 12, 15 and 18. 
+  Their sum is 78. sumMultiples(20) should return 78.
+ */
+
+function sumMultiples(n){
+  let sum = 0;
+  if(n == 3) return n;
+  if(n == 5) return n;
+  if(n % 3 == 0) return n / 3
+  else if(n % 5 == 0) return n / 5
+  return sum;
+}
+
+console.log(sumMultiples(15))
