@@ -464,20 +464,90 @@ console.log(max(1, 34, 2, 23, 100, 04))
 
 function parseFirstInt(str) {
   let splitstr = str.trim().split(' ')
-  var num = '';
   console.log(splitstr)
   for (i = 0; i < splitstr.length; i++) {
-    if (splitstr[i].length === 0)
+    if (!parseInt(splitstr[i])) {
       splitstr.splice(i, 1)
-    if (splitstr[i] > -Infinity && splitstr[i] <= '9') {
-      num = splitstr[i]
-      break;
     }
   }
-  console.log(splitstr)
-  return parseInt(num)
+  return parseInt(splitstr)
 }
 
 // console.log(parseFirstInt('Babylon'))
 // console.log(parseFirstInt('No. 10'))
-console.log(parseFirstInt(' fr dc4dv  fr 2 demikm33 '))
+console.log(parseFirstInt(' No. 10 '))
+
+/* 
+  function add that takes a string with a summation task 
+  and returns its result as a number. 
+  A finite number of natural numbers should be added. 
+  The summation task is a string of the form '1+19+...+281'.
+
+  Example: add('7+12+100') should return 119.
+ */
+
+function add(op) {
+  let nums = op.split('+'), res = 0;
+  nums.forEach(n => res = res + parseInt(n))
+  return res;
+}
+
+console.log(add('7+12+100'))
+
+/* reverse string */
+
+function reverse(str) {
+  let reverse_str = "";
+  for (i = str.length - 1; i >= 0; i--) {
+    reverse_str = reverse_str + str[i]
+  }
+  return reverse_str;
+}
+
+console.log(reverse("liveee"))
+
+/**
+  Roman Numerals to arabic
+
+  Symbol	I|V|X	|L |C  |D  |M   |
+  Value	  1|5|10|50|100|500|1000|
+
+  Example: arabic('CDLXXXIII') should return 483.
+ */
+
+function arabic(s) {
+  let accumulator = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "I" && s[i + 1] === "V") {
+      accumulator += 4;
+      i++;
+    } else if (s[i] === "I" && s[i + 1] === "X") {
+      accumulator += 9;
+      i++;
+    } else if (s[i] === "X" && s[i + 1] === "L") {
+      accumulator += 40;
+      i++;
+    } else if (s[i] === "X" && s[i + 1] === "C") {
+      accumulator += 90;
+      i++;
+    } else if (s[i] === "C" && s[i + 1] === "D") {
+      accumulator += 400;
+      i++;
+    } else if (s[i] === "C" && s[i + 1] === "M") {
+      accumulator += 900;
+      i++;
+    } else {
+      accumulator += romanHash[s[i]];
+    }
+  }
+  return accumulator;
+}
+
+const romanHash = {
+  I: 1, V: 5,
+  X: 10, L: 50,
+  C: 100, D: 500,
+  M: 1000,
+};
+
+console.log(arabic('CDLXXXIII'))
