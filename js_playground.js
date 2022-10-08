@@ -601,3 +601,49 @@ function digitSum(num) {
 }
 
 console.log(digitSum(123456789))
+
+/** 
+* Function toFindDuplicates() that takes an array of numbers
+* and return an array only with the repeated numbers
+
+  compare the index of all the items of an array 
+  with the index of the first time that number occurs. 
+  If they don’t match, that implies that the element is a duplicate.
+  All such elements are returned in a separate array using the filter() method.
+
+  Example: repeated([23, 23, 4, 56, 4, 90, 1, 1, 4, 56, 90, 0, 34, 55, 85])
+*/
+
+// function toFindDuplicates(nums) {
+//   return nums.filter((item, index) => nums.indexOf(item) !== index)
+// }
+
+// console.log(toFindDuplicates([23, 23, 4, 56, 4, 90, 1, 1, 4, 56, 90, 0, 34, 55, 85]))
+
+// function toFindDuplicates(arry) {
+//   const uniqueElements = new Set(arry);
+//   const filteredElements = arry.filter(item => {
+//     if (uniqueElements.has(item)) {
+//       uniqueElements.delete(item);
+//     } else {
+//       return item;
+//     }
+//   });
+
+//   return [...new Set(filteredElements)]
+// }
+
+// const arry = [85, 34, 55, 85];
+// const duplicateElements = toFindDuplicates(arry);
+// console.log(duplicateElements);
+
+function toFindDuplicates(arr) {
+  const count = {};
+  arr.forEach(element => {
+    count[element] = (count[element] || 0) + 1;
+  });
+  return count;
+}
+
+const nums = [23, 23, 4, 56, 4, 90, 1, 1, 4, 56, 90, 0, 34, 55, 85];
+console.log(toFindDuplicates(nums))
