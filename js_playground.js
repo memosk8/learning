@@ -658,15 +658,30 @@ function triangle() {
 
 triangle();
 
-function fizzBuzz(a, b) {
-  for (i = a; i < b; i++) {
-    if (i % 2 === 0 && i % 3 === 0) console.log('DizzFizz')
-      else if (i % 3 === 0 && i % 5 === 0) console.log("FizzBuzz");
-      else if (i % 5 === 0) console.log("Buzz");
-      else if (i % 3 === 0) console.log("Fizz");
-      else if (i % 2 === 0) console.log("Dizz")
+function dizzFizzBuzz(a, b) {
+  for (i = a; i <= b; i++) {
+    if (i % 2 === 0 && i % 3 === 0) console.log('DizzFizz');
+    else if (i % 2 === 0 && i % 5 === 0) console.log('DizzBuzz');
+    else if (i % 3 === 0 && i % 5 === 0) console.log("FizzBuzz");
+    else if (i % 5 === 0) console.log("Buzz");
+    else if (i % 3 === 0) console.log("Fizz");
+    else if (i % 2 === 0) console.log("Dizz");
     else console.log(i);
   }
 }
 
-fizzBuzz(1, 50)
+dizzFizzBuzz(1, 50)
+
+function chessboard() {
+  let chessboard = "";
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      if ((j + i) % 2 == 0) chessboard += ' ';
+      else chessboard += '#';
+    }
+    chessboard += '\n';
+  }
+  return chessboard;
+}
+
+console.log(chessboard())
