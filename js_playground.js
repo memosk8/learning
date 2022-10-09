@@ -647,3 +647,26 @@ function toFindDuplicates(arr) {
 
 const nums = [23, 23, 4, 56, 4, 90, 1, 1, 4, 56, 90, 0, 34, 55, 85];
 console.log(toFindDuplicates(nums))
+
+function triangle() {
+  let str = '*'
+  for (let i = 1; i < 8; i++) {
+    console.log(str)
+    str = str + '*';
+  }
+}
+
+triangle();
+
+function fizzBuzz(a, b) {
+  for (i = a; i < b; i++) {
+    if (i % 2 === 0 && i % 3 === 0) console.log('DizzFizz')
+      else if (i % 3 === 0 && i % 5 === 0) console.log("FizzBuzz");
+      else if (i % 5 === 0) console.log("Buzz");
+      else if (i % 3 === 0) console.log("Fizz");
+      else if (i % 2 === 0) console.log("Dizz")
+    else console.log(i);
+  }
+}
+
+fizzBuzz(1, 50)
