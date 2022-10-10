@@ -656,6 +656,13 @@ function triangle() {
   }
 }
 
+
+/* _____________________________________________ */
+/*         Eloquent Javascript exercises         */
+/*        https://eloquentjavascript.net/        */
+/* --------------------------------------------- */
+
+
 triangle();
 
 function dizzFizzBuzz(a, b) {
@@ -685,3 +692,62 @@ function chessboard() {
 }
 
 console.log(chessboard())
+
+/* Is even function recursive */
+
+function isEvenRecursive(n) {
+  if (n === 0) return true;
+  else if (n === 1) return false;
+  else if (n <= 0) return undefined;
+  else return isEvenRecursive(n - 2);
+}
+
+console.log(isEvenRecursive(3))
+
+/* Count 'B' character on a string */
+
+function countBs(str) {
+  let count = 0;
+  for (i = 0; i < str.length; i++) {
+    if (str[i] === 'B') count++;
+  }
+  return count;
+}
+
+console.log(countBs("BBC"));
+
+/* Count given character character on a string */
+
+function countChar(str, c) {
+  let count = 0;
+  for (i = 0; i < str.length; i++) {
+    if (str[i] === c) count++;
+  }
+  return count;
+}
+
+console.log(countChar("kakkerlak", "k"));
+
+/* Remove value from given index on an array */
+
+function remove(array, index) {
+  return array.slice(0, index)
+    .concat(array.slice(index + 1));
+}
+
+console.log(remove(loshu, 1))
+
+console.log(loshu)
+
+/* Return new array from given array but reversed */
+
+function reverseArray(a) {
+  let reverse = [];
+  for (i = (a.length - 1); i >= 0; i--) {
+    let n = a[i];
+    reverse.push(n)
+  }
+  return reverse;
+}
+
+console.log(reverseArray(loshu))
