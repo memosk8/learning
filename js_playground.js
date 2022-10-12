@@ -794,6 +794,8 @@ function nth(list, n) {
   return undefined;
 }
 
+/*** TODO: implement nth function with recursion ***/
+
 function listLength(list) {
   let i = 0;
   for (let node = list; node; node = node.rest) {
