@@ -787,17 +787,31 @@ const ls = arrayToList([10, 30,3]);
 
 console.log(JSON.stringify(ls,null))
 
-// function listToArray() { }
-// function prepend() { }
-// function nth() { }
-// // → {value: 10, rest: {value: 20, rest: null}}
-// console.log(listToArray(arrayToList([10, 20, 30])));
-// // → [10, 20, 30]
-// console.log(prepend(10, prepend(20, null)));
-// // → {value: 10, rest: {value: 20, rest: null}}
-// console.log(nth(arrayToList([10, 20, 30]), 1));
-// // → 20
+function listToArray(list){
+  let arr = [];
+  if(list === undefined) return undefined;
+  else if(list.rest === null) return arr.push(list.value)
+  else 
+    for (let node = list; node; node = node.rest)
+      arr.push(node.value);
+  return arr;
+}
 
-/* https://eloquentjavascript.net/04_data.html#i_nSTX34CM1M */
+function prepend() { }
+function nth() { }
+
+const l = arrayToList([10,20]);
+console.log(l)
+
+// → {value: 10, rest: {value: 20, rest: null}}
+
+console.log(listToArray(l));
+// → [10, 20, 30]
+console.log(prepend(10, prepend(20, null)));
+// → {value: 10, rest: {value: 20, rest: null}}
+console.log(nth(arrayToList([10, 20, 30]), 1));
+// → 20
+
+/* https://eloquentjavascript.net/04_data.html#i_IJBU+aXOIC */
 
 
