@@ -751,4 +751,53 @@ function reverseArray(a) {
 }
 
 console.log(reverseArray(loshu))
-https://eloquentjavascript.net/04_data.html#i_nSTX34CM1M
+
+
+let list = {
+  value: 1,
+  rest: {
+    value: 2,
+    rest: {
+      value: 3,
+      rest: null
+    }
+  }
+};
+
+/* 
+  Write a function arrayToList that builds up a list structure when given [1, 2, 3] as argument.
+  Also write a listToArray function that produces an array from a list.
+  Then add a helper function prepend, which takes an element and a list 
+  and creates a new list that adds the element to the front of the input list, and nth,
+  which takes a list and a number and returns the element at the given position in 
+  the list (with zero referring to the first element) or undefined when there is no such element.
+*/
+
+function arrayToList(arr) {
+  const list = {}
+  if (arr.length == 0) return null;
+  if (arr.length > 0) {
+    list['value'] = arr.shift();
+    list['rest'] = arrayToList(arr);
+  }
+  return list;
+}
+
+const ls = arrayToList([10, 30,3]);
+
+console.log(JSON.stringify(ls,null))
+
+// function listToArray() { }
+// function prepend() { }
+// function nth() { }
+// // → {value: 10, rest: {value: 20, rest: null}}
+// console.log(listToArray(arrayToList([10, 20, 30])));
+// // → [10, 20, 30]
+// console.log(prepend(10, prepend(20, null)));
+// // → {value: 10, rest: {value: 20, rest: null}}
+// console.log(nth(arrayToList([10, 20, 30]), 1));
+// // → 20
+
+/* https://eloquentjavascript.net/04_data.html#i_nSTX34CM1M */
+
+
