@@ -752,18 +752,6 @@ function reverseArray(a) {
 
 console.log(reverseArray(loshu))
 
-
-let list = {
-  value: 1,
-  rest: {
-    value: 2,
-    rest: {
-      value: 3,
-      rest: null
-    }
-  }
-};
-
 /* 
   Write a function arrayToList that builds up a list structure when given [1, 2, 3] as argument.
   Also write a listToArray function that produces an array from a list.
@@ -772,6 +760,7 @@ let list = {
   which takes a list and a number and returns the element at the given position in 
   the list (with zero referring to the first element) or undefined when there is no such element.
 */
+
 
 function arrayToList(arr) {
   const list = {}
@@ -783,35 +772,40 @@ function arrayToList(arr) {
   return list;
 }
 
-const ls = arrayToList([10, 30,3]);
-
-console.log(JSON.stringify(ls,null))
-
-function listToArray(list){
+function listToArray(list) {
   let arr = [];
-  if(list === undefined) return undefined;
-  else if(list.rest === null) return arr.push(list.value)
-  else 
-    for (let node = list; node; node = node.rest)
-      arr.push(node.value);
+  if (list === undefined) return arr;
+  else if (list.rest === null) arr.push(list.value)
+  else for (let node = list; node; node = node.rest)
+    arr.push(node.value);
   return arr;
 }
 
-function prepend() { }
-function nth() { }
+function prepend(elem, list) {
+  return { 'value': elem, 'rest': list };
+}
 
-const l = arrayToList([10,20]);
-console.log(l)
+function nth(list, n) {
+  let i = 0;
+  for (let node = list; node; node = node.rest) {
+    if (i === n) return node;
+    else i++;
+  }
+  return undefined;
+}
 
-// → {value: 10, rest: {value: 20, rest: null}}
+function listLength(list) {
+  let i = 0;
+  for (let node = list; node; node = node.rest) {
+    if (node.rest === null) return i + 1;
+    else i++;
+  }
+}
 
-console.log(listToArray(l));
-// → [10, 20, 30]
-console.log(prepend(10, prepend(20, null)));
-// → {value: 10, rest: {value: 20, rest: null}}
+const ls = arrayToList([10, 20, 30, 23, 77, 67, 4, 90]);
+console.log(JSON.stringify(ls, null,1))
+
+console.log(listLength(ls));
+console.log(listToArray({ value: 23, rest: ls }));
+console.log(prepend(10, prepend(20, ls)));
 console.log(nth(arrayToList([10, 20, 30]), 1));
-// → 20
-
-/* https://eloquentjavascript.net/04_data.html#i_IJBU+aXOIC */
-
-
