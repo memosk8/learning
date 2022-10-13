@@ -194,9 +194,9 @@ function sumArr(arr) {
 function addWithSurcharge(...arguments) {
   let numsWithSurcharge = [], nums = arguments;
   for (i = 0; i < nums.length; i++) {
-    if(typeof nums[i] != 'number') return undefined;
-    if (nums[i] <= 10)  nums[i]++;
-    else  nums[i] += 2;
+    if (typeof nums[i] != 'number') return undefined;
+    if (nums[i] <= 10) nums[i]++;
+    else nums[i] += 2;
     numsWithSurcharge.push(nums[i]);
   }
   return sumArr(numsWithSurcharge);
@@ -456,12 +456,12 @@ function isPrime(n) {
 console.log(isPrime(7))
 
 /**
-  Write a function sum that calculates 
+  function sum2d that calculates 
   the sum of all elements of a two-dimensional array.
   Example: sum([[1, 2], [3]]) should return 6.
  */
 
-function sum(a) {
+function sum2d(a) {
   let sum = 0;
   for (let i = 0; i < a.length; i++) {
     for (let j = 0; j < a[i].length; j++) {
@@ -471,7 +471,7 @@ function sum(a) {
   return sum;
 }
 
-console.log(sum([[1, 2], [2, 1], [4]]))
+console.log(sum2d([[1, 2], [2, 1], [4]]))
 
 function max() {
   return Math.max(...arguments)
@@ -479,7 +479,7 @@ function max() {
 
 console.log(max(1, 34, 2, 23, 100, 04))
 
-/* 
+/**
   function parseFirstInt that takes a string and returns the first integer present in the string. 
   If the string does not contain an integer, you should get NaN.
 
@@ -501,14 +501,14 @@ function parseFirstInt(str) {
 // console.log(parseFirstInt('No. 10'))
 console.log(parseFirstInt(' No. 10 '))
 
-/* 
-  function add that takes a string with a summation task 
+/**
+  Function add that takes a string with a summation task 
   and returns its result as a number. 
   A finite number of natural numbers should be added. 
   The summation task is a string of the form '1+19+...+281'.
 
   Example: add('7+12+100') should return 119.
- */
+*/
 
 function add(op) {
   let nums = op.split('+'), res = 0;
@@ -539,30 +539,31 @@ console.log(reverse("liveee"))
   Example: arabic('CDLXXXIII') should return 483.
  */
 
-function arabic(s) {
+function arabic(roman) {
   let accumulator = 0;
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === "I" && s[i + 1] === "V") {
+  for (let i = 0; i < roman.length; i++) {
+    if (roman[i] === "I" && roman[i + 1] === "V") {
       accumulator += 4;
       i++;
-    } else if (s[i] === "I" && s[i + 1] === "X") {
+    } else if (roman[i] === "I" && roman[i + 1] === "X") {
       accumulator += 9;
       i++;
-    } else if (s[i] === "X" && s[i + 1] === "L") {
+    } else if (roman[i] === "X" && roman[i + 1] === "L") {
       accumulator += 40;
       i++;
-    } else if (s[i] === "X" && s[i + 1] === "C") {
+    } else if (roman[i] === "X" && roman[i + 1] === "C") {
       accumulator += 90;
       i++;
-    } else if (s[i] === "C" && s[i + 1] === "D") {
+    } else if (roman[i] === "C" && roman[i + 1] === "D") {
       accumulator += 400;
       i++;
-    } else if (s[i] === "C" && s[i + 1] === "M") {
+    } else if (roman[i] === "C" && roman[i + 1] === "M") {
       accumulator += 900;
       i++;
-    } else {
-      accumulator += romanHash[s[i]];
+    } else if (Object.keys(romanHash).includes(roman[i])) {
+      accumulator += romanHash[roman[i]];
     }
+    else return undefined;
   }
   return accumulator;
 }
@@ -574,7 +575,7 @@ const romanHash = {
   M: 1000,
 };
 
-console.log(arabic('CDLXXXIII'))
+console.log(arabic('CDLXXIV'))
 
 /**
   Write a function sumMultiples taking a natural number n 
@@ -834,7 +835,17 @@ function nth(list, n) {
   return undefined;
 }
 
-/*** TODO: implement nth function with recursion ***/
+/**
+ * 
+ * @param {{value: Number, rest: Object}}
+ * list The list to search in
+ * @param {Number}
+ * n The position to retrieve from the list
+ * @returns
+ * The element in the n position on the list implementing 
+ * recursive call to itself
+ */
+
 let j = 0;
 function nthRecursive(list, n) {
   if (n === j)
@@ -864,34 +875,37 @@ function listLength(list) {
 }
 
 function deepEqual(a, b) {
+  let equal = true;
   if (a === undefined || b === undefined) return undefined;
   else if (!(typeof a === typeof b)) {
     console.log(`${typeof a} is not ${typeof b}`)
     return false;
   }
   else if (typeof a === 'object' && typeof b === 'object') {
-    let equal = false;
-
-
-    return equal;
+    if (Object.keys(a).length != Object.keys(b).length)
+      return false;
+    else {
+      for (let i = 0; i < Object.keys(a).length; i++) {
+        let aKey = Object.keys(a)[i];
+        let bKey = Object.keys(b)[i];
+        if(aKey !== bKey) return false;
+        if(a[aKey] !== b[bKey]) return false;
+      }
+    }
   }
-  else if (a != b) {
-    console.log(`${a} has the same type as ${b.toString()}`);
-    return false;
-  }
-  else if (a == b) {
-    console.log(`${a} is identical to ${b}`)
-    return true;
-  }
+  else return a === b ? true : false;
 
+  return equal;
 }
 
-const ls = arrayToList([8, 2, 30, 23, 77, 67, 4, 90]);
+const ls = arrayToList([8, 2, 30, 23, 77, 67]);
 console.log('\n___________\n');
-console.log(deepEqual({ n: 1, m: 2, h: 56 }, { n: 2, m: 4 }));
 
-
-
+const obj1 = { n: 2, m: 'for' }
+const obj2 = { n: 2, m: 'fer' }
+console.log(deepEqual(1,2));
+console.log(deepEqual(ls,ls));
+console.log(deepEqual(obj1,obj2));
 
 
 // console.log(JSON.stringify(ls, null, 1));
