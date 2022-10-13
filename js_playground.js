@@ -811,15 +811,16 @@ function nth(list, n) {
 }
 
 /*** TODO: implement nth function with recursion ***/
-var j = 0;
+let j = 0;
 function nthRecursive(list, n){
   if(n === j )
     return list.value;
   if(list.rest === null )
-    return null;
+    return undefined;
   j++;
   return nthRecursive(list.rest, n);
 }
+
 /**
  * 
  * @param {{value: Number, rest: Object | null}} list 
@@ -838,12 +839,40 @@ function listLength(list) {
   }
 }
 
-const ls = arrayToList([8, 2, 30, 23, 77, 67, 4, 90]);
+function deepEqual(a,b) {
+  if(a === undefined || b === undefined) return undefined;
+  else if(!(typeof a === typeof b)){
+    console.log(`${typeof a} is not ${typeof b}`)
+    return false;
+  }
+  else if(typeof a === 'object' && typeof b === 'object') {
+    let equal = false;
 
-console.log(JSON.stringify(ls, null, 1))
-console.log(listLength(ls));
-console.log(listToArray({ value: 23, rest: ls }));
-console.log(prepend(10, prepend(20, ls)));
-console.log(nth(arrayToList([10, 20, 30]), 1));
-console.log('\n\n___________\n\n')
-console.log(nthRecursive(ls,0))
+
+    return equal;
+  }
+  else if(a != b){
+    console.log(`${a} has the same type as ${b.toString()}`);
+    return false;
+  }
+  else if(a == b){
+    console.log(`${a} is identical to ${b}`)
+    return true;
+  }
+
+}
+
+const ls = arrayToList([8, 2, 30, 23, 77, 67, 4, 90]);
+console.log('\n___________\n');
+console.log(deepEqual({n:1,m:2,h:56},{n:2,m:4}));
+
+
+
+
+
+// console.log(JSON.stringify(ls, null, 1));
+// console.log(listLength(ls));
+// console.log(listToArray(ls));
+// console.log(prepend(10, prepend(20, ls)));
+// console.log(nth(arrayToList([10, 20, 30]), 1));
+// console.log(nthRecursive(ls,9));
