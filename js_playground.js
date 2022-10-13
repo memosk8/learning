@@ -561,30 +561,28 @@ console.log(arabic('CDLXXXIII'))
  */
 
 function sumMultiples(n) {
-  const nums = new Set();
+  const multiples = new Set();
   let sum = 0;
 
   if (n <= 2) return 0;
 
+  // find multiples of 3 and 5 that are less than n
   for (let i = 1; i < n; i++) {
-    if (i * 3 < n) {
-      nums.add(i * 3)
-      console.log(i * 3)
-    }
-    if (i * 5 < n) {
-      nums.add(i * 5)
-      console.log(i * 5)
-    }
+    if (i * 3 < n)
+      multiples.add(i * 3)
+    if (i * 5 < n)
+      multiples.add(i * 5)
   }
 
-  nums.forEach(n => sum = sum + n)
+  // sum all the multiples
+  multiples.forEach(n => sum = sum + n)
 
   return sum;
 }
 
 console.log(sumMultiples(20))
 
-/* 
+/** 
   function digitsum that calculates the digit sum of an integer. 
   The digit sum of an integer is the sum of all its digits.
 
@@ -593,11 +591,11 @@ console.log(sumMultiples(20))
 
 function digitSum(num) {
   let sum = 0;
-  const nums = num.toString().split('')
+  const nums = num.toString().split('');
   for (let i = 0; i < nums.length; i++) {
-    sum = sum + parseInt(nums[i])
+    sum = sum + parseInt(nums[i]);
   }
-  return sum
+  return sum;
 }
 
 console.log(digitSum(123456789))
@@ -656,6 +654,7 @@ function triangle() {
   }
 }
 
+triangle();
 
 /* _____________________________________________ */
 /*         Eloquent Javascript exercises         */
@@ -663,7 +662,6 @@ function triangle() {
 /* --------------------------------------------- */
 
 
-triangle();
 
 function dizzFizzBuzz(a, b) {
   for (i = a; i <= b; i++) {
@@ -693,7 +691,7 @@ function chessboard() {
 
 console.log(chessboard())
 
-/* Is even function recursive */
+/** Is even function recursive */
 
 function isEvenRecursive(n) {
   if (n === 0) return true;
@@ -702,9 +700,9 @@ function isEvenRecursive(n) {
   else return isEvenRecursive(n - 2);
 }
 
-console.log(isEvenRecursive(3))
+console.log(isEvenRecursive(2))
 
-/* Count 'B' character on a string */
+/** Count 'B' character on a string */
 
 function countBs(str) {
   let count = 0;
@@ -716,7 +714,7 @@ function countBs(str) {
 
 console.log(countBs("BBC"));
 
-/* Count given character character on a string */
+/** Count given character on a string */
 
 function countChar(str, c) {
   let count = 0;
@@ -728,7 +726,7 @@ function countChar(str, c) {
 
 console.log(countChar("kakkerlak", "k"));
 
-/* Remove value from given index on an array */
+/** Remove value from given index on an array */
 
 function remove(array, index) {
   return array.slice(0, index)
@@ -737,30 +735,31 @@ function remove(array, index) {
 
 console.log(remove(loshu, 1))
 
-console.log(loshu)
+// console.log(loshu)
 
-/* Return new array from given array but reversed */
+/** Return new array from given array but reversed */
 
 function reverseArray(a) {
   let reverse = [];
   for (i = (a.length - 1); i >= 0; i--) {
-    let n = a[i];
-    reverse.push(n)
+    reverse.push(a[i])
   }
   return reverse;
 }
 
-console.log(reverseArray(loshu))
+console.log(reverseArray([23, 34, 4, 22]))
 
 /* 
-  Write a function arrayToList that builds up a list structure when given [1, 2, 3] as argument.
-  Also write a listToArray function that produces an array from a list.
-  Then add a helper function prepend, which takes an element and a list 
-  and creates a new list that adds the element to the front of the input list, and nth,
-  which takes a list and a number and returns the element at the given position in 
-  the list (with zero referring to the first element) or undefined when there is no such element.
+
+  , and nth,
+  which 
 */
 
+/**  
+ * function arrayToList 
+ * that builds up a list structure 
+ * when given [1, 2, 3] as argument. 
+*/
 
 function arrayToList(arr) {
   const list = {}
@@ -772,6 +771,8 @@ function arrayToList(arr) {
   return list;
 }
 
+/** listToArray function that produces an array from a list. */
+
 function listToArray(list) {
   let arr = [];
   if (list === undefined) return arr;
@@ -781,9 +782,21 @@ function listToArray(list) {
   return arr;
 }
 
+/**
+ * helper function prepend, which takes an element and a list 
+ * and creates a new list that adds the element to the front of the input list
+*/
+
 function prepend(elem, list) {
   return { 'value': elem, 'rest': list };
 }
+
+/**
+ * 
+ * @param {{value: Number, rest: Object}} list The list to search in
+ * @param {Number} n The position to retrieve from the list
+ * @returns The element in the n position on the list
+ */
 
 function nth(list, n) {
   let i = 0;
@@ -796,6 +809,13 @@ function nth(list, n) {
 
 /*** TODO: implement nth function with recursion ***/
 
+
+/**
+ * 
+ * @param {{value: Number, rest: Object | null}} list 
+ * @returns The length of the given list 
+ */
+
 function listLength(list) {
   let i = 0;
   for (let node = list; node; node = node.rest) {
@@ -805,8 +825,8 @@ function listLength(list) {
 }
 
 const ls = arrayToList([10, 20, 30, 23, 77, 67, 4, 90]);
-console.log(JSON.stringify(ls, null,1))
 
+console.log(JSON.stringify(ls, null, 1))
 console.log(listLength(ls));
 console.log(listToArray({ value: 23, rest: ls }));
 console.log(prepend(10, prepend(20, ls)));
