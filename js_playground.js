@@ -793,9 +793,12 @@ function prepend(elem, list) {
 
 /**
  * 
- * @param {{value: Number, rest: Object}} list The list to search in
- * @param {Number} n The position to retrieve from the list
- * @returns The element in the n position on the list
+ * @param {{value: Number, rest: Object}}
+ * list The list to search in
+ * @param {Number}
+ * n The position to retrieve from the list
+ * @returns
+ * The element in the n position on the list
  */
 
 function nth(list, n) {
@@ -808,12 +811,23 @@ function nth(list, n) {
 }
 
 /*** TODO: implement nth function with recursion ***/
-
-
+var j = 0;
+function nthRecursive(list, n){
+  if(n === j )
+    return list.value;
+  if(list.rest === null )
+    return null;
+  j++;
+  return nthRecursive(list.rest, n);
+}
 /**
  * 
  * @param {{value: Number, rest: Object | null}} list 
- * @returns The length of the given list 
+ * List with a value 
+ * and the rest of the elements in an object OR null
+ * 
+ * @returns 
+ * The length of the given list 
  */
 
 function listLength(list) {
@@ -824,10 +838,12 @@ function listLength(list) {
   }
 }
 
-const ls = arrayToList([10, 20, 30, 23, 77, 67, 4, 90]);
+const ls = arrayToList([8, 2, 30, 23, 77, 67, 4, 90]);
 
 console.log(JSON.stringify(ls, null, 1))
 console.log(listLength(ls));
 console.log(listToArray({ value: 23, rest: ls }));
 console.log(prepend(10, prepend(20, ls)));
 console.log(nth(arrayToList([10, 20, 30]), 1));
+console.log('\n\n___________\n\n')
+console.log(nthRecursive(ls,0))
