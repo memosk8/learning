@@ -116,18 +116,18 @@ console.log(equals3(false, true, false))
 console.log(equals3(0, 1, 0))
 console.log(equals3('.', '.', '.'))
 
-/* 
+/** 
   Write a function isEven that checks if a passed number is even. 
   If the given number is even, true should be returned, otherwise false.
 */
 
 function isEven(n) {
-  return n % 2 === 0 ? true : false;
+  return Math.abs(n) % 2 === 0 ? true : false;
 }
 
-console.log(isEven())
+console.log(isEven(4))
 
-/* 
+/** 
   Write a function unequal that checks 3 values for strict inequality. 
   The function should return true if all three parameters are strict unequal. 
   Otherwise false.
@@ -137,9 +137,9 @@ function unequal(n1, n2, n3) {
   return (n1 !== n2) && (n1 !== n3) && (n2 !== n3) ? true : false;
 }
 
-console.log(unequal(2, 1, 1))
+console.log(unequal(2, 2, 2))
 
-/* 
+/**
   Write a function isThreeDigit that checks if 
   a number is greater than or equal to 100 and less than 1000.
  */
@@ -148,7 +148,10 @@ function isThreeDigit(n) {
   return n >= 100 && n < 1000 ? true : false;
 }
 
-/* 
+console.log(isThreeDigit(234))
+console.log(isThreeDigit(23))
+
+/**
   Write a function repdigit that determines 
   whether a two-digit decimal is a repdigit or not. 
   If the decimal is a repdigit, 'Repdigit!' 
@@ -163,22 +166,43 @@ function repdigit(n) {
   return n1 === n2 ? 'Repdigit!' : 'No Repdigit!';
 }
 
-console.log(repdigit(22))
-console.log(repdigit(23))
-/* 
-Write a function addWithSurcharge that adds two amounts with surcharge. 
-For each amount less than or equal to 10, the surcharge is 1. 
-For each amount greater than 10, the surcharge is 2.
+console.log(repdigit(10))
+console.log(repdigit(11))
 
-Example: addWithSurcharge(5, 15) should return 23.
-*/
+/**
+ * 
+ * @param {Array} arr 
+ * The array containing the numbers to sum
+ * @returns 
+ * The sum of the numbers in the given array
+ */
 
-function addWithSurcharge(n1, n2) {
-  let nums = [n1, n2].map(n => n <= 10 ? n += 1 : n += 2)
-  return nums[0] + nums[1];
+function sumArr(arr) {
+  let sum = 0;
+  arr.forEach(n => sum = sum + n)
+  return sum;
 }
 
-console.log(addWithSurcharge(5, 15))
+/**
+ * 
+ * @param  {...any} arguments 
+ * The n amount of numbers to add surcharge
+ * @returns 
+ * The total sum of the numbers with surcharge applied
+ */
+
+function addWithSurcharge(...arguments) {
+  let numsWithSurcharge = [], nums = arguments;
+  for (i = 0; i < nums.length; i++) {
+    if(typeof nums[i] != 'number') return undefined;
+    if (nums[i] <= 10)  nums[i]++;
+    else  nums[i] += 2;
+    numsWithSurcharge.push(nums[i]);
+  }
+  return sumArr(numsWithSurcharge);
+}
+
+console.log(addWithSurcharge(15, 3))
 
 /* 
   Write a function addWithSurcharge that adds two amounts with surcharge. 
@@ -812,10 +836,10 @@ function nth(list, n) {
 
 /*** TODO: implement nth function with recursion ***/
 let j = 0;
-function nthRecursive(list, n){
-  if(n === j )
+function nthRecursive(list, n) {
+  if (n === j)
     return list.value;
-  if(list.rest === null )
+  if (list.rest === null)
     return undefined;
   j++;
   return nthRecursive(list.rest, n);
@@ -839,23 +863,23 @@ function listLength(list) {
   }
 }
 
-function deepEqual(a,b) {
-  if(a === undefined || b === undefined) return undefined;
-  else if(!(typeof a === typeof b)){
+function deepEqual(a, b) {
+  if (a === undefined || b === undefined) return undefined;
+  else if (!(typeof a === typeof b)) {
     console.log(`${typeof a} is not ${typeof b}`)
     return false;
   }
-  else if(typeof a === 'object' && typeof b === 'object') {
+  else if (typeof a === 'object' && typeof b === 'object') {
     let equal = false;
 
 
     return equal;
   }
-  else if(a != b){
+  else if (a != b) {
     console.log(`${a} has the same type as ${b.toString()}`);
     return false;
   }
-  else if(a == b){
+  else if (a == b) {
     console.log(`${a} is identical to ${b}`)
     return true;
   }
@@ -864,7 +888,7 @@ function deepEqual(a,b) {
 
 const ls = arrayToList([8, 2, 30, 23, 77, 67, 4, 90]);
 console.log('\n___________\n');
-console.log(deepEqual({n:1,m:2,h:56},{n:2,m:4}));
+console.log(deepEqual({ n: 1, m: 2, h: 56 }, { n: 2, m: 4 }));
 
 
 
