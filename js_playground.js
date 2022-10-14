@@ -877,23 +877,27 @@ function listLength(list) {
 function deepEqual(a, b) {
   if (a === undefined || b === undefined)
     return undefined;
-  else if (typeof a == 'object' && typeof b == 'object' && a != null && b != null) {
+  else if (a === null || b === null) return false;
+  // if both are objects
+  else if (typeof a == 'object' && typeof b == 'object' ) {
     if (Object.keys(a).length != Object.keys(b).length)
       return false;
     else {
+    // if both have same # of props
       for (let i = 0; i < Object.keys(a).length; i++) {
+      // get key by key on both objects
         let aKey = Object.keys(a)[i];
         let bKey = Object.keys(b)[i];
+        if(aKey != bKey)
+          return false;
         if (typeof a[aKey] == 'object' && typeof b[bKey] == 'object')
           return deepEqual(a[aKey], b[bKey]);
-        else if (a[aKey] !== b[bKey])
+        if (a[aKey] !== b[bKey])
           return false;
-        else if(aKey != bKey)
-          return false;
-        else continue;
       }
     }
   }
+  // if both not obj then strict compare
   else return a === b;
 
   return true;
@@ -906,7 +910,7 @@ const obj = { here: 3, object: 2 };
 const obj2 = { n: 2, m: 'fer', H: { G: 2, MEM: "R2F4" } }
 // console.log(deepEqual(1, 2));
 // console.log(deepEqual(ls, ls));
-console.log(deepEqual(obj2,{ n: 2, m: 'fer', H: { G: 2, MEM: "R2F4" } }));
+console.log(deepEqual(obj,{ here: 3, object: 2 }));
 
 // console.log(JSON.stringify(ls, null, 1));
 // console.log(listLength(ls));
