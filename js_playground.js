@@ -875,38 +875,38 @@ function listLength(list) {
 }
 
 function deepEqual(a, b) {
-  let equal = true;
-  if (a === undefined || b === undefined) return undefined;
-  else if (!(typeof a === typeof b)) {
-    console.log(`${typeof a} is not ${typeof b}`)
-    return false;
-  }
-  else if (typeof a === 'object' && typeof b === 'object') {
+  if (a === undefined || b === undefined)
+    return undefined;
+  else if (typeof a == 'object' && typeof b == 'object' && a != null && b != null) {
     if (Object.keys(a).length != Object.keys(b).length)
       return false;
     else {
       for (let i = 0; i < Object.keys(a).length; i++) {
         let aKey = Object.keys(a)[i];
         let bKey = Object.keys(b)[i];
-        if(aKey !== bKey) return false;
-        if(a[aKey] !== b[bKey]) return false;
+        if (typeof a[aKey] == 'object' && typeof b[bKey] == 'object')
+          return deepEqual(a[aKey], b[bKey]);
+        else if (a[aKey] !== b[bKey])
+          return false;
+        else if(aKey != bKey)
+          return false;
+        else continue;
       }
     }
   }
-  else return a === b ? true : false;
+  else return a === b;
 
-  return equal;
+  return true;
 }
 
-const ls = arrayToList([8, 2, 30, 23, 77, 67]);
+const ls = arrayToList([8, 2, 30]);
 console.log('\n___________\n');
 
-const obj1 = { n: 2, m: 'for' }
-const obj2 = { n: 2, m: 'fer' }
-console.log(deepEqual(1,2));
-console.log(deepEqual(ls,ls));
-console.log(deepEqual(obj1,obj2));
-
+const obj = { here: 3, object: 2 };
+const obj2 = { n: 2, m: 'fer', H: { G: 2, MEM: "R2F4" } }
+// console.log(deepEqual(1, 2));
+// console.log(deepEqual(ls, ls));
+console.log(deepEqual(obj2,{ n: 2, m: 'fer', H: { G: 2, MEM: "R2F4" } }));
 
 // console.log(JSON.stringify(ls, null, 1));
 // console.log(listLength(ls));
