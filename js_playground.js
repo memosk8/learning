@@ -885,32 +885,30 @@ function deepEqual(a, b) {
     else {
     // if both have same # of props
       for (let i = 0; i < Object.keys(a).length; i++) {
-      // get key by key on both objects
+        // get key by key fron both objects at the same index
         let aKey = Object.keys(a)[i];
         let bKey = Object.keys(b)[i];
-        if(aKey != bKey)
-          return false;
+        // if key names are not equal
+        if(aKey != bKey)  return false;
+        // if value is object calls itself with the inner objects recursively
         if (typeof a[aKey] == 'object' && typeof b[bKey] == 'object')
           return deepEqual(a[aKey], b[bKey]);
-        if (a[aKey] !== b[bKey])
-          return false;
+        // if the values are different
+        if (a[aKey] !== b[bKey])  return false;
       }
     }
   }
   // if both not obj then strict compare
   else return a === b;
-
+  // if it gets here both are equal objects
   return true;
 }
 
 const ls = arrayToList([8, 2, 30]);
 console.log('\n___________\n');
 
-const obj = { here: 3, object: 2 };
-const obj2 = { n: 2, m: 'fer', H: { G: 2, MEM: "R2F4" } }
-// console.log(deepEqual(1, 2));
-// console.log(deepEqual(ls, ls));
-console.log(deepEqual(obj,{ here: 3, object: 2 }));
+const obj2 = { n: 2, m: 'fer', H: { G: 2, MEM: "R2F4", UyU: {0: 'one', 2: 'two'} } }
+console.log(deepEqual(obj2,{ n: 2, m: 'fer', H: { G: 2, MEM: "R2F4", UyU: {0: 'one', 2: 'two'} } }));
 
 // console.log(JSON.stringify(ls, null, 1));
 // console.log(listLength(ls));
@@ -918,3 +916,84 @@ console.log(deepEqual(obj,{ here: 3, object: 2 }));
 // console.log(prepend(10, prepend(20, ls)));
 // console.log(nth(arrayToList([10, 20, 30]), 1));
 // console.log(nthRecursive(ls,9));
+
+console.log('\n___________\n');
+/***
+ * High Order functions
+ *
+ * Higher-order functions allow us to abstract over actions, not just values.
+ * They come in several forms. For example, we can have functions that create new functions.
+ *
+*/
+
+function greaterThan(n) {
+  return m => m > n;
+}
+
+let greaterThan10 = greaterThan(10);
+let greaterThan4 = greaterThan(4);
+console.log(greaterThan10(20));
+console.log(greaterThan4(3));
+
+/**
+ * And we can have functions that change other functions.
+*/
+
+function noisy(f) {
+  return (...args) => {
+    console.log("calling "+f+" with", args);
+    let result = f(...args);
+    console.log("returned", result);
+    return result;
+  };
+}
+noisy(Math.max)(3.3, 2.3, 1.4);
+
+/**
+ * We can even write functions that provide new types of control flow.
+*/
+
+// function unless(test, then) {
+//   if (!test) then();
+// }
+//
+// repeat(3, n => {
+//   unless(n % 2 == 1, () => {
+//     console.log(n, "is even");
+//   });
+// });
+
+// → 0 is even
+// → 2 is even
+
+/***
+ * Filtering arrays
+*/
+
+function filter(array, test) {
+  let passed = [];
+  for (let element of array) {
+    if (test(element))
+      passed.push(element);
+  }
+  return passed;
+}
+
+const a = [23,78,90,12,24,6,48];
+const findMultiplesof2and3 = n => n % 2 == 0 && n % 3 == 0;
+const multiplesOf2and3 = filter(a, findMultiplesof2and3);
+console.log(a,multiplesOf2and3);
+
+/**
+ * Summarizing with reduce
+*/
+
+function reduce(array, combine, start) {
+  let current = start;
+  for (let element of array) {
+    current = combine(current, element);
+  }
+  return current;
+}
+
+console.log(reduce([1, 2, 3, 4, 5], (a, b) => a + b, 0));
