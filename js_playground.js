@@ -879,22 +879,22 @@ function deepEqual(a, b) {
     return undefined;
   else if (a === null || b === null) return false;
   // if both are objects
-  else if (typeof a == 'object' && typeof b == 'object' ) {
+  else if (typeof a == 'object' && typeof b == 'object') {
     if (Object.keys(a).length != Object.keys(b).length)
       return false;
     else {
-    // if both have same # of props
+      // if both have same #n of props
       for (let i = 0; i < Object.keys(a).length; i++) {
         // get key by key fron both objects at the same index
-        let aKey = Object.keys(a)[i];
-        let bKey = Object.keys(b)[i];
+        let aKey = Object.keys(a)[i],
+          bKey = Object.keys(b)[i];
         // if key names are not equal
-        if(aKey != bKey)  return false;
+        if (aKey != bKey) return false;
         // if value is object calls itself with the inner objects recursively
         if (typeof a[aKey] == 'object' && typeof b[bKey] == 'object')
           return deepEqual(a[aKey], b[bKey]);
         // if the values are different
-        if (a[aKey] !== b[bKey])  return false;
+        if (a[aKey] !== b[bKey]) return false;
       }
     }
   }
@@ -907,8 +907,8 @@ function deepEqual(a, b) {
 const ls = arrayToList([8, 2, 30]);
 console.log('\n___________\n');
 
-const obj2 = { n: 2, m: 'fer', H: { G: 2, MEM: "R2F4", UyU: {0: 'one', 2: 'two'} } }
-console.log(deepEqual(obj2,{ n: 2, m: 'fer', H: { G: 2, MEM: "R2F4", UyU: {0: 'one', 2: 'two'} } }));
+const obj2 = { n: 2, m: 'fer', H: { G: 2, MEM: "R2F4", UyU: { 0: 'one', 2: 'two' } } }
+console.log(deepEqual(obj2, { n: 2, m: 'fer', H: { G: 2, MEM: "R2F4", UyU: { 0: 'one', 2: 'two' } } }));
 
 // console.log(JSON.stringify(ls, null, 1));
 // console.log(listLength(ls));
@@ -917,7 +917,11 @@ console.log(deepEqual(obj2,{ n: 2, m: 'fer', H: { G: 2, MEM: "R2F4", UyU: {0: 'o
 // console.log(nth(arrayToList([10, 20, 30]), 1));
 // console.log(nthRecursive(ls,9));
 
+
+
 console.log('\n___________\n');
+
+
 /***
  * High Order functions
  *
@@ -941,13 +945,13 @@ console.log(greaterThan4(3));
 
 function noisy(f) {
   return (...args) => {
-    console.log("calling "+f+" with", args);
+    console.log("calling " + f + " with", args);
     let result = f(...args);
     console.log("returned", result);
     return result;
   };
 }
-noisy(Math.max)(3.3, 2.3, 1.4);
+noisy(Math.min)(3.3, 2.3, 1.4);
 
 /**
  * We can even write functions that provide new types of control flow.
@@ -979,10 +983,10 @@ function filter(array, test) {
   return passed;
 }
 
-const a = [23,78,90,12,24,6,48];
-const findMultiplesof2and3 = n => n % 2 == 0 && n % 3 == 0;
-const multiplesOf2and3 = filter(a, findMultiplesof2and3);
-console.log(a,multiplesOf2and3);
+const a = [2,3,4];
+const findMultiplesof2 = n => n % 2 == 0;
+const multiplesOf2and3 = filter(a, findMultiplesof2);
+console.log(a.length, multiplesOf2and3.length);
 
 /**
  * Summarizing with reduce
@@ -996,4 +1000,136 @@ function reduce(array, combine, start) {
   return current;
 }
 
-console.log(reduce([1, 2, 3, 4, 5], (a, b) => a + b, 0));
+console.log(reduce([1, 2, 3, 4, 5], (a, b) => a + b, 1));
+
+/**
+ *  We can use an object instead of a switch case block
+ *  to check for a value related to the key string
+ *  by simply checking if given prop is present on the lookup obj
+ */
+function phoneticLookup(val) {
+
+  const lookup = {
+    alpha: "Adams",
+    bravo: "Boston",
+    charlie: "Chicago",
+    delta: "Denver",
+    echo: "Easy",
+    foxtrot: "Frank"
+  }
+
+  let result = lookup[val] || undefined;
+
+  return result;
+}
+
+console.log(phoneticLookup("bravo"))
+
+const contacts = [
+  {
+    firstName: "Akira",
+    lastName: "Laine",
+    number: "0543236543",
+    likes: ["Pizza", "Coding", "Brownie Points"],
+  },
+  {
+    firstName: "Harry",
+    lastName: "Potter",
+    number: "0994372684",
+    likes: ["Hogwarts", "Magic", "Hagrid"],
+  },
+  {
+    firstName: "Sherlock",
+    lastName: "Holmes",
+    number: "0487345643",
+    likes: ["Intriguing Cases", "Violin"],
+  },
+  {
+    firstName: "Kristian",
+    lastName: "Vos",
+    number: "unknown",
+    likes: ["JavaScript", "Gaming", "Foxes"],
+  },
+];
+
+function lookUpProfile(name, prop) {
+  let foundname = false;
+  for (let contact of contacts){
+    if(name === contact.firstName){
+      foundname = true;
+      if(contact.hasOwnProperty(prop)){
+        return contact[prop];
+      }
+      else return "No such property";
+    }
+  }
+  if(!foundname){
+    return "No such contact";
+  }
+}
+
+lookUpProfile("Akira", "likes");
+
+// Setup
+const recordCollection = {
+  2548: {
+    albumTitle: 'Slippery When Wet',
+    artist: 'Bon Jovi',
+    tracks: ['Let It Rock', 'You Give Love a Bad Name']
+  },
+  2468: {
+    albumTitle: '1999',
+    artist: 'Prince',
+    tracks: ['1999', 'Little Red Corvette']
+  },
+  1245: {
+    artist: 'Robert Palmer',
+    tracks: []
+  },
+  5439: {
+    albumTitle: 'ABBA Gold'
+  }
+};
+
+// Only change code below this line
+function updateRecords(records, id, prop, value) {
+  if (prop !== 'tracks' && value !== "") {
+    records[id][prop] = value;
+  } else if (prop === "tracks" && records[id].hasOwnProperty("tracks") === false) {
+    records[id][prop] = [value];
+  } else if (prop === "tracks" && value !== "") {
+    records[id][prop].push(value);
+  } else if (value === "") {
+    delete records[id][prop];
+  }
+  return records;
+}
+
+console.log(updateRecords(recordCollection, 5439, 'artist', 'ABBA'))
+
+/* ---------------------------------------------- */
+
+function updateRecords(records, id, prop, value) {
+  // Access target album in record collection
+  const album = records[id];
+
+  // If value is an empty string,
+  // delete the given prop property from the album
+  if (value === "") {
+    delete album[prop];
+  }
+  // If prop isn't tracks,
+  // update or set that album's prop to value
+  else if (prop !== "tracks") {
+    album[prop] = value;
+  }
+  // If prop is tracks,
+  // add value to the end of the album's existing tracks array
+  else {
+    album["tracks"] = album["tracks"] || [];
+    album["tracks"].push(value);
+  }
+
+  // must always return the entire record collection object
+  return records;
+}
