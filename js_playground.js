@@ -983,7 +983,7 @@ function filter(array, test) {
   return passed;
 }
 
-const a = [2,3,4];
+const a = [2, 3, 4];
 const findMultiplesof2 = n => n % 2 == 0;
 const multiplesOf2and3 = filter(a, findMultiplesof2);
 console.log(a.length, multiplesOf2and3.length);
@@ -1001,6 +1001,25 @@ function reduce(array, combine, start) {
 }
 
 console.log(reduce([1, 2, 3, 4, 5], (a, b) => a + b, 1));
+
+
+/* flat 2d array into 1d array */
+
+let arrays = [[1, 2, 3], [4, 5], [6]];
+// Your code here.
+function flatten(arr) {
+  let flat = arr.reduce((a, b) => a.concat(b))
+  return flat;
+}
+
+/* high order function that */
+
+function loop(start, test, update, body) {
+  for (let i = start; test(i); i = update(i))
+    body(i)
+}
+
+loop(8, n => n > 0, n => n - 1, console.log);
 
 /**
  *  We can use an object instead of a switch case block
@@ -1054,16 +1073,16 @@ const contacts = [
 
 function lookUpProfile(name, prop) {
   let foundname = false;
-  for (let contact of contacts){
-    if(name === contact.firstName){
+  for (let contact of contacts) {
+    if (name === contact.firstName) {
       foundname = true;
-      if(contact.hasOwnProperty(prop)){
+      if (contact.hasOwnProperty(prop)) {
         return contact[prop];
       }
       else return "No such property";
     }
   }
-  if(!foundname){
+  if (!foundname) {
     return "No such contact";
   }
 }
@@ -1133,3 +1152,35 @@ function updateRecords(records, id, prop, value) {
   // must always return the entire record collection object
   return records;
 }
+
+/** implementation of the every() method with a loop*/
+function every(array, test) {
+  let is = true;
+  for (let i = 0; i < array.length; i++) {
+    if (!test(array[i])) {
+      is = false;
+    }
+  }
+  return is;
+}
+
+/** implementation of the every() method using some()*/
+function _every(array, test) {
+  let is = array.some((n) => test(n))
+  return is;
+}
+
+console.log(_every([1, 3, 5], n => n < 10));
+// → true
+console.log(_every([2, 4, 16], n => n < 10));
+// → false
+console.log(_every([], n => n < 10));
+// → true
+
+console.log(every([1, 3, 5], n => n < 10));
+// → true
+console.log(every([2, 4, 16], n => n < 10));
+// → false
+console.log(every([], n => n < 10));
+// → true
+
