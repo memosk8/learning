@@ -1286,8 +1286,7 @@ console.log(titleCase("I'm a little tea pot"))
   return [...arr2.slice(0,n), ...arr1, ...arr2.slice(n)];
 } */
 
-const frankenSplice = (arr1,arr2,n) =>
-[...arr2.slice(0,n), ...arr1, ...arr2.slice(n)];
+const frankenSplice = (arr1,arr2,n) => [...arr2.slice(0,n), ...arr1, ...arr2.slice(n)];
 
 console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1))
 
@@ -1306,3 +1305,18 @@ function bouncer(arr) {
 }
 
 console.log(bouncer([7, "ate", "", false, NaN, undefined,9]))
+
+/**
+  check if all the characters in second string are present in first string
+*/
+
+function mutation(arr) {
+  const test = arr[1].toLowerCase();
+  const target = arr[0].toLowerCase();
+  for (let i = 0; i < test.length; i++) {
+    if (target.indexOf(test[i]) < 0) return false;
+  }
+  return true;
+}
+
+console.log(mutation(["hello", "hey"]))
