@@ -983,7 +983,7 @@ function filter(array, test) {
   return passed;
 }
 
-const a = [2,3,4];
+const a = [2, 3, 4];
 const findMultiplesof2 = n => n % 2 == 0;
 const multiplesOf2and3 = filter(a, findMultiplesof2);
 console.log(a.length, multiplesOf2and3.length);
@@ -1054,16 +1054,16 @@ const contacts = [
 
 function lookUpProfile(name, prop) {
   let foundname = false;
-  for (let contact of contacts){
-    if(name === contact.firstName){
+  for (let contact of contacts) {
+    if (name === contact.firstName) {
       foundname = true;
-      if(contact.hasOwnProperty(prop)){
+      if (contact.hasOwnProperty(prop)) {
         return contact[prop];
       }
       else return "No such property";
     }
   }
-  if(!foundname){
+  if (!foundname) {
     return "No such contact";
   }
 }
@@ -1124,12 +1124,135 @@ function updateRecords(records, id, prop, value) {
     album[prop] = value;
   }
   // If prop is tracks,
-  // add value to the end of the album's existing tracks array
-  else {
-    album["tracks"] = album["tracks"] || [];
-    album["tracks"].push(value);
+  // add value to the end of the album's existing tracks array// Setup
+  const recordCollection = {
+    2548: {
+      albumTitle: 'Slippery When Wet',
+      artist: 'Bon Jovi',
+      tracks: ['Let It Rock', 'You Give Love a Bad Name']
+    },
+    2468: {
+      albumTitle: '1999',
+      artist: 'Prince',
+      tracks: ['1999', 'Little Red Corvette']
+    },
+    1245: {
+      artist: 'Robert Palmer',
+      tracks: []
+    },
+    5439: {
+      albumTitle: 'ABBA Gold'
+    }
+  };
+
+  // Only change code below this line
+  function updateRecords(records, id, prop, value) {
+    if (prop !== 'tracks' && value !== "") {
+      records[id][prop] = value;
+    } else if (prop === "tracks" && records[id].hasOwnProperty("tracks") === false) {
+      records[id][prop] = [value];
+    } else if (prop === "tracks" && value !== "") {
+      records[id][prop].push(value);
+    } else if (value === "") {
+      delete records[id][prop];
+    }
+    return records;
   }
 
-  // must always return the entire record collection object
-  return records;
+  console.log(updateRecords(recordCollection, 5439, 'artist', 'ABBA'))
+
+  /* ---------------------------------------------- */
+
+  function updateRecords(records, id, prop, value) {
+    // Access target album in record collection
+    const album = records[id];
+
+    // If value is an empty string,
+    // delete the given prop property from the album
+    if (value === "") {
+      delete album[prop];
+    }
+    // If prop isn't tracks,
+    // update or set that album's prop to value
+    else if (prop !== "tracks") {
+      album[prop] = value;
+    }
+    // If prop is tracks,
+    // add value to the end of the album's existing tracks array
+    else {
+      album["tracks"] = album["tracks"] || [];
+      album["tracks"].push(value);
+    }
+
+    // must always return the entire record collection object
+    return records;
+  }
+
 }
+
+/** Return the longest word on a string */
+function findLongestWordLength(str) {
+  return Math.max(...str.split(' ').map(word => word.length));
+}
+
+console.log(findLongestWordLength("The quick brown fox jumped over the lazy dog"))
+
+function largestOfFour(arr) {
+  return arr.map(nums => Math.max(...nums))
+}
+
+let numss = [[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]
+
+console.log(largestOfFour(numss))
+
+/** Check if given string ends with given substr */
+function confirmEnding(str, target) {
+  if (target === "" || typeof target != 'string') return undefined;
+  let checkFrom = str.length - target.length;
+  return str.substring(checkFrom) === target ? true : false;
+}
+
+console.log(confirmEnding("Bastian", "n"))
+
+/** repeat given string num times on a new string */
+function repeatStringNumTimes(str, num) {
+  let newstr = "";
+  if (num <= 0) return newstr;
+  else if (num == 1) return str;
+  else
+    for (let i = 0; i < num; i++)
+      newstr = newstr + str;
+  return newstr;
+}
+
+console.log(repeatStringNumTimes("abc", 2))
+
+function truncateString(str, num) {
+  return str.length > num ? str.slice(0, num) + "..." : str;
+}
+
+console.log(truncateString("A-tisket a-tasket A green and yellow basket", 8))
+truncateString("A-", 1)
+
+function matchElement(arr, func) {
+  let num = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (func(arr[i])) {
+      num = arr[i];
+      break;
+    }
+  }
+  return num > 0 ? num : undefined;
+}
+
+matchElement([1, 2, 3, 4], num => num % 2 === 0);
+
+function titleCase(str) {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map(val => val.replace(val.charAt(0), val.charAt(0).toUpperCase()))
+    .join(" ");
+}
+
+console.log(titleCase("I'm a little tea pot"))
