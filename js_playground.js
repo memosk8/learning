@@ -1002,6 +1002,25 @@ function reduce(array, combine, start) {
 
 console.log(reduce([1, 2, 3, 4, 5], (a, b) => a + b, 1));
 
+
+/* flat 2d array into 1d array */
+
+let arrays = [[1, 2, 3], [4, 5], [6]];
+// Your code here.
+function flatten(arr) {
+  let flat = arr.reduce((a, b) => a.concat(b))
+  return flat;
+}
+
+/* high order function that */
+
+function loop(start, test, update, body) {
+  for (let i = start; test(i); i = update(i))
+    body(i)
+}
+
+loop(8, n => n > 0, n => n - 1, console.log);
+
 /**
  *  We can use an object instead of a switch case block
  *  to check for a value related to the key string
@@ -1054,16 +1073,16 @@ const contacts = [
 
 function lookUpProfile(name, prop) {
   let foundname = false;
-  for (let contact of contacts) {
-    if (name === contact.firstName) {
+  for (let contact of contacts)  {
+    if  (name === contact.firstName)  {
       foundname = true;
-      if (contact.hasOwnProperty(prop)) {
+      if  (contact.hasOwnProperty(prop))  {
         return contact[prop];
       }
       else return "No such property";
     }
   }
-  if (!foundname) {
+  if  (!foundname)  {
     return "No such contact";
   }
 }
