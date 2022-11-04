@@ -1073,16 +1073,16 @@ const contacts = [
 
 function lookUpProfile(name, prop) {
   let foundname = false;
-  for (let contact of contacts)  {
-    if  (name === contact.firstName)  {
+  for (let contact of contacts) {
+    if (name === contact.firstName) {
       foundname = true;
-      if  (contact.hasOwnProperty(prop))  {
+      if (contact.hasOwnProperty(prop)) {
         return contact[prop];
       }
       else return "No such property";
     }
   }
-  if  (!foundname)  {
+  if (!foundname) {
     return "No such contact";
   }
 }
@@ -1286,7 +1286,7 @@ console.log(titleCase("I'm a little tea pot"))
   return [...arr2.slice(0,n), ...arr1, ...arr2.slice(n)];
 } */
 
-const frankenSplice = (arr1,arr2,n) => [...arr2.slice(0,n), ...arr1, ...arr2.slice(n)];
+const frankenSplice = (arr1, arr2, n) => [...arr2.slice(0, n), ...arr1, ...arr2.slice(n)];
 
 console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1))
 
@@ -1304,7 +1304,7 @@ function bouncer(arr) {
   return truthies;
 }
 
-console.log(bouncer([7, "ate", "", false, NaN, undefined,9]))
+console.log(bouncer([7, "ate", "", false, NaN, undefined, 9]))
 
 /**
   check if all the characters in second string are present in first string
@@ -1320,3 +1320,99 @@ function mutation(arr) {
 }
 
 console.log(mutation(["hello", "hey"]))
+
+
+/**
+  Chunky Monkey
+  Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+*/
+
+function chunkArrayInGroups(arr, size) {
+  let temp = [], result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i % size !== size - 1)
+      temp.push(arr[i]);
+    else {
+      temp.push(arr[i]);
+      result.push(temp);
+      temp = [];
+    }
+  }
+
+  if (temp.length !== 0) result.push(temp);
+  return result;
+}
+
+console.log(chunkArrayInGroups(["a", "b", "c", "d", "e"], 2))
+
+/**  
+ * 
+ * Object Oriented Programming 
+ * 
+ * **/
+
+/** 
+ * Remember to Set the Constructor Property when Changing the Prototype
+ * */
+
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype = {
+  constructor: Dog,
+  numLegs: 4,
+  eat: function () {
+    console.log("nom nom nom");
+  },
+  describe: function () {
+    console.log("My name is " + this.name);
+  }
+};
+
+let beagle = new Dog("Snoopy");
+
+
+/* an object inherits its prototype 
+ * directly from the constructor function that created it. 
+ */
+
+console.log(Dog.prototype.isPrototypeOf(beagle))
+
+function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function () {
+    console.log("nom nom nom");
+  }
+};
+
+let duck = Object.create(Animal.prototype);
+let begle = Object.create(Animal.prototype);
+
+duck.eat();
+console.log(typeof duck.constructor)
+
+Dog.prototype = Object.create(Animal.prototype)
+let puff = new Dog();
+
+console.log(puff instanceof Animal, puff instanceof Dog)
+
+/** constructor with getter function which returns private 
+ * that is not accesible
+*/
+
+function Bird() {
+  let weight = 15;
+  this.getWeight = function () {
+    return weight;
+  }
+}
+
+/** Understand the Immediately Invoked Function Expression (IIFE) */
+
+(function (){
+  console.log("A cozy nest is ready");
+})();
