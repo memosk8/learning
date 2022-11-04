@@ -1435,3 +1435,40 @@ let funModule = (function () {
     }
   }
 })();
+
+
+/**
+ *    ***Refactor Global Variables Out of Functions*** 
+ *  
+ *  In functional programming, the idea of a pure function 
+ *  implies that none of the external values are mutated,
+ *  which means that it has to create new values from the 
+ *  ones given as arguments
+ */
+
+
+// The global variable
+const bookList = [
+  "The Hound of the Baskervilles",
+  "On The Electrodynamics of Moving Bodies",
+  "Philosophiæ Naturalis Principia Mathematica",
+  "Disquisitiones Arithmeticae"
+];
+
+function add(bookList, bookName) {
+  return [...bookList, bookName];
+}
+
+function remove(bookList, bookName) {
+  let removedBookList = [...bookList]
+  const book_index = removedBookList.indexOf(bookName);
+  if (book_index >= 0) {
+    removedBookList.splice(book_index, 1)
+    return removedBookList;
+  }
+}
+
+console.log(
+  remove(
+    add(bookList, "A Brief History of Time"), "On The Electrodynamics of Moving Bodies")
+)
