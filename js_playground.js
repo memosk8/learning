@@ -1413,6 +1413,25 @@ function Bird() {
 
 /** Understand the Immediately Invoked Function Expression (IIFE) */
 
-(function (){
+(function () {
   console.log("A cozy nest is ready");
+})();
+
+/** An immediately invoked function expression (IIFE) 
+ * is often used to group related functionality into a single object or module. 
+ */
+
+let funModule = (function () {
+  return {
+    isCuteMixin: function (obj) {
+      obj.isCute = function () {
+        return true;
+      };
+    },
+    singMixin: function (obj) {
+      obj.sing = function () {
+        console.log("Singing to an awesome tune");
+      };
+    }
+  }
 })();
