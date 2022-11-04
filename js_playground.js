@@ -1443,7 +1443,11 @@ let funModule = (function () {
  *  In functional programming, the idea of a pure function 
  *  implies that none of the external values are mutated,
  *  which means that it has to create new values from the 
- *  ones given as arguments
+ *  ones given as arguments.
+ * 
+ * Also a pure function is best defined 
+ * with the parameters it will work with,
+ * but never mutating their original state
  */
 
 
