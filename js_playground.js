@@ -1693,3 +1693,78 @@ function splitify(str) {
 }
 
 console.log(splitify("Hello World,I-am+code"));
+
+/**
+ *  The function should return a string. 
+ *  For example, I-like-Star-Wars would be converted to I like Star Wars.  
+ */
+
+function sentensify(str) {
+  return str.split(/\W/).join(" ");
+}
+
+console.log(sentensify("May-the-force-be-with-you"));
+
+/**
+ * The input is a string with spaces and title-cased words
+ * The output is a string with the spaces between words replaced by a hyphen (-)
+ * The output should be all lower-cased letters
+ * The output should not have any spaces
+ */
+
+function urlSlug(title) {
+  return title
+    .trim()
+    .toLowerCase()
+    .split(/\W+/)
+    .join("-");
+}
+
+console.log(
+  urlSlug("A Mind Needs Books Like A Sword Needs A Whetstone")
+);
+
+/**return true if all the numbers in the array are positive */
+function checkEveryPositive(arr) {
+  return arr.every(n => n > 0)
+}
+
+console.log(checkEveryPositive([1, 2, 3, -4, 5]));
+
+/**
+ * Use the some method inside the checkPositive function 
+ * to check if any element in arr is positive. 
+ * The function should return a Boolean value.
+ */
+
+function checkSomePositive(arr) {
+  return arr.some(n => n > 0);
+}
+
+console.log(
+  checkSomePositive([1, 2, 3, -4, 5])
+);
+
+function add_(x) {
+  return function (y) {
+    return function (z) {
+      return x + y + z;
+    }
+  }
+}
+
+/** XD version 
+ * const add = x => y => z => x + y + z;
+ */
+
+console.log(add_(10)(20)(30));
+
+function sumAll(arr) {
+  arr.sort((a,b) => a - b)
+  let nums = [];
+  for(let i = arr[0]; i <= arr[1]; i++)
+    nums.push(i)
+  return nums.reduce((prev, curr) => prev + curr);
+}
+
+console.log(sumAll([10, 5]))
