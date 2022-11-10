@@ -1794,9 +1794,11 @@ function destroyer(arr, ...valsToRemove) {
 console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3))
 
 function whatIsInAName(collection, source) {
-  return collection
-    .filter(obj => Object.keys(source)
-      .every(key => obj.hasOwnProperty(key) && obj[key] === source[key]));
+  return collection.filter(
+    obj => Object.keys(source).every(
+      key => obj.hasOwnProperty(key) && obj[key] === source[key]
+    )
+  );
 }
 
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
@@ -1843,19 +1845,72 @@ console.log(translatePigLatin("rhythm"))
 
 
 function myReplace(str, before, after) {
-  // if first char is uppercase
-  if(before.substr(0,1) == before[0].toUpperCase())
-    after = after.replace(after[0], after[0].toUpperCase())
-  // lowercase
-  else 
-    after = after.replace(after[0], after[0].toLowerCase())
-  
+  before.substr(0,1) == before[0].toUpperCase() ?
+    after = after.replace(after[0], after[0].toUpperCase()) :
+      after = after.replace(after[0], after[0].toLowerCase());
+
   return str.replace(before, after)
 }
 
 console.log(
-  myReplace("A quick brown fox jumped over the lazy dog", "Over", "above")
+  myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped")
 )
 
+const nucleobasePairs = {
+    A: ['A','T'],
+    C: ['C','G'],
+    G: ['G','C'],
+    T: ['T','A']
+}
 
+function pairElement(str) {
+  let DNA = [];
+  for(let c = 0; c < str.length; c++)
+    if(nucleobasePairs.hasOwnProperty(str[c]))
+      DNA.push(nucleobasePairs[str[c]])
+  return DNA;
+}
+
+console.log(pairElement("GCGA"))
+
+function fearNotLetter(str) {
+  const letters = 'abcdefghijklmnopqrstuvwxyz';
+  if (str === letters || str === "")
+    return undefined;
+  const start = letters.indexOf(str[0]);
+  const chunk = letters.substr(start, str.length)
+  for(let c = 0; c < str.length; c++)
+    if(chunk[c] !== str[c]) return chunk[c];
+}
+
+console.log(fearNotLetter("stvwx"))
+
+function uniteUnique(...arrs) {
+  const uniques = new Set();
+  arrs.forEach(a => a.forEach(n => uniques.add(n)));
+  return [...uniques];
+}
+
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]))
+
+
+const HTML_ENTITIES = {
+  '&': "&amp;",
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&apos;'
+}
+
+function convertHTML(str) {
+  const chars = str.split("")
+  for (let i = 0; i < chars.length; i++)
+    if (HTML_ENTITIES.hasOwnProperty(chars[i]))
+      str = str.replace(chars[i], HTML_ENTITIES[chars[i]])
+  return str
+}
+
+console.log(convertHTML("Hamburgers < Pizza < Tacos"))
+console.log(convertHTML('Stuff in "quotation marks"'))
+console.log(convertHTML("Schindler's List"))
 
