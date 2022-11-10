@@ -1210,7 +1210,7 @@ function updateRecords(records, id, prop, value) {
 
 /** Return the longest word on a string */
 function findLongestWordLength(str) {
-  return Math.max(...str.split(' ').map(word => word.length));
+  return Math.max(...str.split(/\W/).map(word => word.length));
 }
 
 console.log(findLongestWordLength("The quick brown fox jumped over the lazy dog"))
@@ -1230,7 +1230,7 @@ function confirmEnding(str, target) {
   return str.substring(checkFrom) === target ? true : false;
 }
 
-console.log(confirmEnding("Bastian", "n"))
+console.log(confirmEnding("Bastian", "ian"))
 
 /** repeat given string num times on a new string */
 function repeatStringNumTimes(str, num) {
@@ -1268,12 +1268,12 @@ matchElement([1, 2, 3, 4], num => num % 2 === 0);
 function titleCase(str) {
   return str
     .toLowerCase()
-    .split(" ")
-    .map(val => val.replace(val.charAt(0), val.charAt(0).toUpperCase()))
+    .split(/\W/)
+    .map(word => word.replace(word.charAt(0), word.charAt(0).toUpperCase()))
     .join(" ");
 }
 
-console.log(titleCase("I'm a little tea pot"))
+console.log(titleCase("I am a little tea pot"))
 
 /**
   Copy each element of the first array into the second array, in order.
@@ -1287,7 +1287,7 @@ console.log(titleCase("I'm a little tea pot"))
 
 const frankenSplice = (arr1, arr2, n) => [...arr2.slice(0, n), ...arr1, ...arr2.slice(n)];
 
-console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1))
+console.log(frankenSplice([1, 2, 3], [4, 5, 6], 0))
 
 /**
   return <new array> that only inlcudes truthy values from <given array>
@@ -1296,7 +1296,7 @@ console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1))
 
 function bouncer(arr) {
   let truthies = [];
-  arr.forEach((el) => {
+  arr.forEach(el => {
     if (!!el)
       truthies.push(el)
   });
@@ -1310,6 +1310,7 @@ console.log(bouncer([7, "ate", "", false, NaN, undefined, 9]))
 */
 
 function mutation(arr) {
+  if (arr[1].length < 1) return undefined;
   const test = arr[1].toLowerCase();
   const target = arr[0].toLowerCase();
   for (let i = 0; i < test.length; i++) {
@@ -1318,7 +1319,7 @@ function mutation(arr) {
   return true;
 }
 
-console.log(mutation(["hello", "hey"]))
+console.log(mutation(["hello", "oe"]))
 
 
 /**
@@ -1795,7 +1796,66 @@ console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3))
 function whatIsInAName(collection, source) {
   return collection
     .filter(obj => Object.keys(source)
-    .every(key => obj.hasOwnProperty(key) && obj[key] === source[key]));
+      .every(key => obj.hasOwnProperty(key) && obj[key] === source[key]));
 }
 
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+
+function spinalCase(str) {
+  return str
+    .split(/\s|_|(?=[A-Z])/)
+    .join("-")
+    .toLowerCase();
+}
+
+spinalCase('This Is Spinal Tap');
+
+/**
+ * If a word begins with a consonant, take the first consonant or consonant cluster,
+ * move it to the end of the word, and add ay to it.
+ * 
+ * If a word begins with a vowel, just add way at the end.
+*/
+
+function translatePigLatin(str) {
+  const vowels = 'aeiou';
+  let strArr = [...str]
+  if (!strArr.some(c => vowels.includes(c))) {
+    return str + 'ay'
+  }
+  else if (vowels.includes(str[0])) {
+    return str + "way";
+  }
+  else {
+    for (let i = 0; i < strArr.length; i++) {
+      if (vowels.includes(strArr[i])) {
+        let consonant = strArr.splice(0, i)
+        return strArr.concat(consonant).join("") + "ay"
+      }
+    }
+  }
+}
+
+console.log(translatePigLatin("glove"))
+console.log(translatePigLatin("consonant"))
+console.log(translatePigLatin("algorithm"))
+console.log(translatePigLatin("rhythm"))
+
+
+function myReplace(str, before, after) {
+  // if first char is uppercase
+  if(before.substr(0,1) == before[0].toUpperCase())
+    after = after.replace(after[0], after[0].toUpperCase())
+  // lowercase
+  else 
+    after = after.replace(after[0], after[0].toLowerCase())
+  
+  return str.replace(before, after)
+}
+
+console.log(
+  myReplace("A quick brown fox jumped over the lazy dog", "Over", "above")
+)
+
+
+
