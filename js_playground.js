@@ -1689,7 +1689,7 @@ console.log(nonMutatingSort(globalArray));
 */
 
 function splitify(str) {
-  return str.split(/\W/);
+  return str.split(/\W+/);
 }
 
 console.log(splitify("Hello World,I-am+code"));
@@ -1845,9 +1845,9 @@ console.log(translatePigLatin("rhythm"))
 
 
 function myReplace(str, before, after) {
-  before.substr(0,1) == before[0].toUpperCase() ?
+  before.substr(0, 1) == before[0].toUpperCase() ?
     after = after.replace(after[0], after[0].toUpperCase()) :
-      after = after.replace(after[0], after[0].toLowerCase());
+    after = after.replace(after[0], after[0].toLowerCase());
 
   return str.replace(before, after)
 }
@@ -1857,16 +1857,16 @@ console.log(
 )
 
 const nucleobasePairs = {
-    A: ['A','T'],
-    C: ['C','G'],
-    G: ['G','C'],
-    T: ['T','A']
+  A: ['A', 'T'],
+  C: ['C', 'G'],
+  G: ['G', 'C'],
+  T: ['T', 'A']
 }
 
 function pairElement(str) {
   let DNA = [];
-  for(let c = 0; c < str.length; c++)
-    if(nucleobasePairs.hasOwnProperty(str[c]))
+  for (let c = 0; c < str.length; c++)
+    if (nucleobasePairs.hasOwnProperty(str[c]))
       DNA.push(nucleobasePairs[str[c]])
   return DNA;
 }
@@ -1879,8 +1879,8 @@ function fearNotLetter(str) {
     return undefined;
   const start = letters.indexOf(str[0]);
   const chunk = letters.substr(start, str.length)
-  for(let c = 0; c < str.length; c++)
-    if(chunk[c] !== str[c]) return chunk[c];
+  for (let c = 0; c < str.length; c++)
+    if (chunk[c] !== str[c]) return chunk[c];
 }
 
 console.log(fearNotLetter("stvwx"))
@@ -1914,3 +1914,34 @@ console.log(convertHTML("Hamburgers < Pizza < Tacos"))
 console.log(convertHTML('Stuff in "quotation marks"'))
 console.log(convertHTML("Schindler's List"))
 
+
+function sumFibs(n) {
+  if (n < 1)
+    return 0;
+
+  let result = 1;
+  let a = 1
+  let b = 1
+
+  while (b <= n) {
+    if (b & 1)
+      result += b;
+    [a, b] = [b, a + b]
+  }
+
+  return result;
+}
+console.log(sumFibs(10))
+
+function sumPrimes(num) {
+
+  // Check all numbers for primality
+  let sum = 0;
+  for (let i = 2; i <= num; i++) {
+    if (isPrime(i))
+      sum += i;
+  }
+  return sum;
+}
+
+console.log(sumPrimes(90))
