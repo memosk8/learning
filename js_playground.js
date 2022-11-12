@@ -1843,7 +1843,6 @@ console.log(translatePigLatin("consonant"))
 console.log(translatePigLatin("algorithm"))
 console.log(translatePigLatin("rhythm"))
 
-
 function myReplace(str, before, after) {
   before.substr(0, 1) == before[0].toUpperCase() ?
     after = after.replace(after[0], after[0].toUpperCase()) :
@@ -1893,7 +1892,6 @@ function uniteUnique(...arrs) {
 
 console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]))
 
-
 const HTML_ENTITIES = {
   '&': "&amp;",
   '<': '&lt;',
@@ -1910,10 +1908,15 @@ function convertHTML(str) {
   return str
 }
 
-console.log(convertHTML("Hamburgers < Pizza < Tacos"))
-console.log(convertHTML('Stuff in "quotation marks"'))
-console.log(convertHTML("Schindler's List"))
-
+console.log(convertHTML(
+  "Hamburgers < Pizza < Tacos")
+)
+console.log(convertHTML(
+  'Stuff in "quotation marks"')
+)
+console.log(convertHTML(
+  "Schindler's List")
+)
 
 function sumFibs(n) {
   if (n < 1)
@@ -1931,11 +1934,10 @@ function sumFibs(n) {
 
   return result;
 }
+
 console.log(sumFibs(10))
 
 function sumPrimes(num) {
-
-  // Check all numbers for primality
   let sum = 0;
   for (let i = 2; i <= num; i++) {
     if (isPrime(i))
@@ -1945,3 +1947,25 @@ function sumPrimes(num) {
 }
 
 console.log(sumPrimes(90))
+
+/**
+* Smallest Common Multiple
+*/
+
+function smallestCommons(arrNums) {
+  const [min, max] = arrNums.sort((a, b) => a - b);
+  let range = [];
+  for (let i = min; i < max + 1; i++)
+    range.push(i);
+  const maxVal = range.reduce((prod, curr) => prod * curr);
+  for (let multiple = max; multiple <= maxVal; multiple += max) {
+    const divisible = range.every((value) => multiple % value === 0);
+    if (divisible) {
+      console.log(divisible)
+      return multiple;
+    }
+  }
+}
+
+console.log(smallestCommons([2, 6]))
+
