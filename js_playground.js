@@ -438,7 +438,7 @@ console.log(gcd(6, 15))
 /** Prime number */
 
 function isPrime(n) {
-  if (n === 1) {
+  if (n == 1) {
     return false;
   }
   else if (n === 2) {
@@ -446,6 +446,7 @@ function isPrime(n) {
   } else {
     for (var x = 2; x < n; x++) {
       if (n % x === 0) {
+        // console.log([n,x,n / x])
         return false;
       }
     }
@@ -453,7 +454,7 @@ function isPrime(n) {
   }
 }
 
-console.log(isPrime(7))
+console.log(isPrime(23))
 
 /**
   function sum2d that calculates 
@@ -1855,6 +1856,17 @@ console.log(
   myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped")
 )
 
+
+
+
+
+/**
+ * Pairs of DNA strands consist of nucleobase pairs.Base pairs are represented by the characters AT and CG, which form building blocks of the DNA double helix.
+ * The DNA strand is missing the pairing element. 
+ * Write a function to match the missing base pairs for the provided DNA strand. 
+ * For each character in the provided string, find the base pair character. Return the results as a 2d array.
+*/
+
 const nucleobasePairs = {
   A: ['A', 'T'],
   C: ['C', 'G'],
@@ -1862,15 +1874,17 @@ const nucleobasePairs = {
   T: ['T', 'A']
 }
 
-function pairElement(str) {
-  let DNA = [];
-  for (let c = 0; c < str.length; c++)
-    if (nucleobasePairs.hasOwnProperty(str[c]))
-      DNA.push(nucleobasePairs[str[c]])
-  return DNA;
+function pairElement(strand) {
+  let basePairs = [];
+  for (let c = 0; c < strand.length; c++)
+    if (nucleobasePairs.hasOwnProperty(strand[c]))
+    basePairs.push(nucleobasePairs[strand[c]])
+  return basePairs;
 }
 
-console.log(pairElement("GCGA"))
+console.log(
+  pairElement("GCGA")
+)
 
 function fearNotLetter(str) {
   const letters = 'abcdefghijklmnopqrstuvwxyz';
