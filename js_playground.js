@@ -1878,7 +1878,7 @@ function pairElement(strand) {
   let basePairs = [];
   for (let c = 0; c < strand.length; c++)
     if (nucleobasePairs.hasOwnProperty(strand[c]))
-    basePairs.push(nucleobasePairs[strand[c]])
+      basePairs.push(nucleobasePairs[strand[c]])
   return basePairs;
 }
 
@@ -1922,15 +1922,9 @@ function convertHTML(str) {
   return str
 }
 
-console.log(convertHTML(
-  "Hamburgers < Pizza < Tacos")
-)
-console.log(convertHTML(
-  'Stuff in "quotation marks"')
-)
-console.log(convertHTML(
-  "Schindler's List")
-)
+console.log(convertHTML("Hamburgers < Pizza < Tacos"))
+console.log(convertHTML('Stuff in "quotation marks"'))
+console.log(convertHTML("Schindler's List"))
 
 function sumFibs(n) {
   if (n < 1)
@@ -1983,3 +1977,19 @@ function smallestCommons(arrNums) {
 
 console.log(smallestCommons([2, 6]))
 
+function dropElements(arr, func) {
+  let sliceIndex = arr.findIndex(func);
+  return arr.slice(sliceIndex >= 0 ? sliceIndex : arr.length);
+}
+
+console.log(dropElements([1, 2, 3, 4], function (n) { return n > 4 }))
+console.log(dropElements([1, 2, 3], function (n) { return n < 3; }));
+
+function steamrollArray(arr) {
+  let flat = []
+  
+  
+  return arr;
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);
