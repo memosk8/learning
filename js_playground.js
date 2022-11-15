@@ -1978,17 +1978,20 @@ function smallestCommons(arrNums) {
 console.log(smallestCommons([2, 6]))
 
 function dropElements(arr, func) {
-  let sliceIndex = arr.findIndex(func);
-  return arr.slice(sliceIndex >= 0 ? sliceIndex : arr.length);
+  while (arr.length > 0 && !func(arr[0]))
+    arr.shift();
+  return arr;
 }
+
+dropElements([1, 2, 3], function (n) { return n < 3; });
 
 console.log(dropElements([1, 2, 3, 4], function (n) { return n > 4 }))
 console.log(dropElements([1, 2, 3], function (n) { return n < 3; }));
 
 function steamrollArray(arr) {
   let flat = []
-  
-  
+
+
   return arr;
 }
 
