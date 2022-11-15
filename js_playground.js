@@ -2011,8 +2011,15 @@ function binaryAgent(str) {
   const decimals = binaryParts.map(n => parseInt(n, 2));
   const chars = decimals.map(n => String.fromCharCode(n))
   const string = chars.join("")
-  console.log(string)
   return string;
 }
 
-binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+console.log(
+  binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111")
+);
+
+function truthCheck(collection, pre) {
+  return collection.every(item => !!item[pre]);
+}
+
+console.log(truthCheck([{ name: "Quincy", role: "Founder", isBot: false }, { name: "Naomi", role: "", isBot: false }, { name: "Camperbot", role: "Bot", isBot: true }], "isBot"))
