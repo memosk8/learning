@@ -1856,10 +1856,6 @@ console.log(
   myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped")
 )
 
-
-
-
-
 /**
  * Pairs of DNA strands consist of nucleobase pairs.Base pairs are represented by the characters AT and CG, which form building blocks of the DNA double helix.
  * The DNA strand is missing the pairing element. 
@@ -1983,8 +1979,6 @@ function dropElements(arr, func) {
   return arr;
 }
 
-dropElements([1, 2, 3], function (n) { return n < 3; });
-
 console.log(dropElements([1, 2, 3, 4], function (n) { return n > 4 }))
 console.log(dropElements([1, 2, 3], function (n) { return n < 3; }));
 
@@ -2023,3 +2017,21 @@ function truthCheck(collection, pre) {
 }
 
 console.log(truthCheck([{ name: "Quincy", role: "Founder", isBot: false }, { name: "Naomi", role: "", isBot: false }, { name: "Camperbot", role: "Bot", isBot: true }], "isBot"))
+
+/**
+ * It has to add two numbers passed as parameters and return the sum.
+ * It has to check if any of the numbers are actual numbers, otherwise return undefined and stop the program right there.
+ * It has to check if it has one or two arguments passed. More are ignored. 
+ * If it has only one argument then it has to return a function that uses that number and expects another one, to then add it.
+ */
+
+function addTogether() {
+  for(let i = 0; i < 2; i++)
+    if(typeof arguments[i] != 'number')
+      return undefined;
+    
+  return null;
+}
+
+console.log(addTogether(2, 3))
+// console.log(addTogether(2)(3))
