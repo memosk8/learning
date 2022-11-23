@@ -2028,16 +2028,79 @@ console.log(truthCheck([{ name: "Quincy", role: "Founder", isBot: false }, { nam
 
 function addTogether() {
   const [first, second] = arguments;
-  if (arguments.length === 1 && typeof first === 'number') {
+  if (arguments.length === 1 && typeof first === 'number')
     return num => {
-      if (typeof num === 'number') {
+      if (typeof num === 'number')
         return first + num;
-      }
     }
-  }
-  if (typeof first === 'number' && typeof second === 'number') {
+
+  if (typeof first === 'number' && typeof second === 'number')
     return first + second;
-  }
 }
 
-console.log(addTogether(23)(2))
+console.log(addTogether(23)(234))
+
+
+const Person = function (firstAndLast) {
+  let fullName = firstAndLast;
+
+  this.getFirstName = function () {
+    return fullName.split(" ")[0];
+  };
+
+  this.getLastName = function () {
+    return fullName.split(" ")[1];
+  };
+
+  this.getFullName = function () {
+    return fullName;
+  };
+
+  this.setFirstName = function (first) {
+    fullName = first + " " + fullName.split(" ")[1];
+  };
+
+  this.setLastName = function (last) {
+    fullName = fullName.split(" ")[0] + " " + last;
+  };
+
+  this.setFullName = function (name) {
+    fullName = name;
+  };
+};
+
+const bob = new Person('Juan Varga');
+console.log(bob.getLastName());
+
+
+/**
+ * Map the Debris
+ * According to Kepler's Third Law, 
+ * the orbital period T of two point masses orbiting each other in a circular or elliptic orbit is:
+ * 
+ *    T=2π√(a3/μ)
+ * 
+
+  a  is the orbit's semi-major axis
+  μ  GM  is the standard gravitational parameter
+  G  is the gravitational constant,
+  M  is the mass of the more massive body.
+
+  Return a new array that transforms the elements' average altitude into their orbital periods (in seconds). 
+
+ */
+
+function orbitalPeriod(arr) {
+  var GM = 398600.4418;
+  var earthRadius = 6367.4447;
+
+  arr.forEach(function (item) {
+    // Calculate the Orbital period
+    item.orbitalPeriod = Math.round(2 * Math.PI * Math.sqrt(Math.pow(earthRadius + item.avgAlt, 3) / GM));
+    //Delete the avgAlt property
+    delete item.avgAlt;
+  });
+  return arr;
+}
+
+console.log(orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]))
