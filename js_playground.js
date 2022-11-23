@@ -2025,13 +2025,19 @@ console.log(truthCheck([{ name: "Quincy", role: "Founder", isBot: false }, { nam
  * If it has only one argument then it has to return a function that uses that number and expects another one, to then add it.
  */
 
+
 function addTogether() {
-  for(let i = 0; i < 2; i++)
-    if(typeof arguments[i] != 'number')
-      return undefined;
-    
-  return null;
+  const [first, second] = arguments;
+  if (arguments.length === 1 && typeof first === 'number') {
+    return num => {
+      if (typeof num === 'number') {
+        return first + num;
+      }
+    }
+  }
+  if (typeof first === 'number' && typeof second === 'number') {
+    return first + second;
+  }
 }
 
-console.log(addTogether(2, 3))
-// console.log(addTogether(2)(3))
+console.log(addTogether(23)(2))
