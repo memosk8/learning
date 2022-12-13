@@ -2096,11 +2096,15 @@ function orbitalPeriod(arr) {
 
   arr.forEach(function (item) {
     // Calculate the Orbital period
-    item.avgalt = Math.round(2 * Math.PI * Math.sqrt(Math.pow(earthRadius + item.avgAlt, 3) / GM));
-    //Delete the avgAlt property
-    delete item.avgAlt;
+    item["avgAlt"] = Math.round(2 * Math.PI * Math.sqrt(Math.pow(earthRadius + item.avgAlt, 3) / GM));
   });
   return arr;
 }
 
 console.log(orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]))
+
+function palindrome(str) {
+  return true;
+}
+
+palindrome("eye");
