@@ -2026,12 +2026,37 @@ console.log(truthCheck([{ name: "Quincy", role: "Founder", isBot: false }, { nam
  */
 
 function addTogether() {
-  for(let i = 0; i < 2; i++)
-    if(typeof arguments[i] != 'number')
-      return undefined;
-    
+  if (arguments.length < 1) return undefined;
+  
+
   return null;
 }
 
 console.log(addTogether(2, 3))
 // console.log(addTogether(2)(3))
+
+/** Kepler orbital law */
+
+function orbitalPeriod(arr) {
+  const GM = 398600.4418;
+  const earthRadius = 6367.4447;
+  const a = 2 * Math.PI;
+  const newArr = [];
+
+  const getOrbPeriod = function(obj) {
+    const c = Math.pow(earthRadius + obj.avgAlt, 3);
+    const b = Math.sqrt(c / GM);
+    const orbPeriod = Math.round(a * b);
+    // create new object
+    return {name: obj.name, orbitalPeriod: orbPeriod};
+  };
+
+  for (let elem in arr) {
+    newArr.push(getOrbPeriod(arr[elem]));
+  }
+
+  return newArr;
+}
+
+// test here
+orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]);
